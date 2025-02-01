@@ -1,7 +1,6 @@
 import { Menu, Transition } from "@headlessui/react";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import { type GetStaticProps } from "next";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BiCategory } from "react-icons/bi";
@@ -15,8 +14,6 @@ import {
   type PublishedEventsQuery,
 } from "~/generated/generated";
 import { client } from "~/lib/apollo";
-
-import styles from "./styles.module.css";
 
 enum AllCategory {
   ALL = "ALL",
@@ -98,62 +95,11 @@ const Page = ({ data }: Props) => {
     }
   };
 
-  const backgroundImages = [
-    "crash.png",
-    "mario.png",
-    "pac-man.png",
-    "lara-croft.png",
-    "pikachu.png",
-    "sonic.png",
-    "kratos.png",
-    "crash.png",
-    "mario.png",
-    "pac-man.png",
-    "lara-croft.png",
-    "pikachu.png",
-    "sonic.png",
-    "crash.png",
-    "mario.png",
-    "pac-man.png",
-    "lara-croft.png",
-    "pikachu.png",
-    "sonic.png",
-    "kratos.png",
-    "crash.png",
-    "mario.png",
-    "pac-man.png",
-    "lara-croft.png",
-    "pikachu.png",
-    "sonic.png",
-    "kratos.png",
-    "kratos.png",
-    "crash.png",
-    "mario.png",
-    "pac-man.png",
-    "lara-croft.png",
-    "pikachu.png",
-  ];
-
   return (
     <div
       style={{ willChange: "transform" }}
-      className="relative flex min-h-screen justify-center overflow-hidden bg-gradient-to-b from-primary-300 to-primary-400"
+      className="relative flex min-h-screen shadow-2xl justify-center overflow-hidden bg-gradient-to-b from-green-400 to-green-500"
     >
-      <div className={styles.area}>
-        <ul className={styles.circles}>
-          {backgroundImages.map((image, i) => (
-            <li key={i}>
-              <Image
-                src={`/assets/png/eventsPageBg/${image}`}
-                alt={`${image}`}
-                width={image === "sonic.png" ? 50 : 100}
-                height={100}
-                className="bodyFont text-white"
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
       <div className="mx-auto flex flex-col items-center justify-center px-5 sm:px-7 lg:px-10">
         <div className="no-scrollbar overflow-y-auto">
           <div
@@ -339,13 +285,12 @@ const Page = ({ data }: Props) => {
                 </div>
               </div>
             </div>
-
             <div
               data-scroll-section
               data-scroll-speed="0.7"
               className={
                 filteredEvents.length > 0
-                  ? `mx-auto mb-20 grid h-full w-full max-w-7xl grid-cols-1 justify-center gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4`
+                  ? `mx-auto mb-44 grid h-full w-full max-w-7xl grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10 place-items-center`
                   : "flex h-full w-full items-center justify-center"
               }
             >
@@ -356,7 +301,7 @@ const Page = ({ data }: Props) => {
               ) : (
                 <div
                   data-scroll
-                  className={`flex w-full flex-col items-center justify-center gap-5 rounded-xl border border-primary-200/80 bg-black/30 p-10 text-center text-xl text-white`}
+                  className="flex w-full flex-col items-center justify-center gap-5 rounded-xl border border-primary-200/80 bg-black/30 p-10 text-center text-xl text-white"
                 >
                   <CiWarning size={50} />
                   No events found
