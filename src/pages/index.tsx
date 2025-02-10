@@ -13,7 +13,6 @@ import { AuthStatus, useAuth } from "~/hooks/useAuth";
 import { cn } from "~/lib/utils";
 import styles from "~/components/coming-soon/shootingStars.module.css";
 import { SessionProvider } from "next-auth/react";
-import Navbar from "~/components/navbar";
 import HomeButton from "~/components/button/home";
 
 export default function Landing() {
@@ -22,7 +21,6 @@ export default function Landing() {
       <main className="relative h-screen overflow-hidden">
         <div className="absolute top-0">
           <HomeUi />
-          <Navbar />
           {/* <Menu router={router} /> */}
           <HomeFooter />
         </div>
@@ -44,36 +42,67 @@ export const HomeFooter = () => {
   return (
     <footer
       className={cn(
-        "absolute bottom-0 flex w-full flex-col gap-2 text-green-950 shadow-zinc-950 font-bold md:gap-4 pt-4 h-14 ",
+        "absolute bottom-0 flex w-full flex-col gap-2 text-black font-bold text-[1rem] md:gap-4 h-14 ",
       )}
     >
       {show && (
-        <ul className="mb-5 mx-auto  flex flex-1 flex-row flex-wrap shadow-zinc-950 items-center justify-center gap-2 whitespace-nowrap text-xs sm:text-xs md:gap-5">
-          <li className="transition-colors duration-300 hover:text-green-900">
+        <ul className="mb-5 mx-auto  flex flex-1 flex-row flex-wrap items-center justify-center gap-2 whitespace-nowrap md:gap-5">
+          <li
+            className="transition-colors duration-300 hover:text-green-900"
+            style={{
+              textShadow:
+                "0 0 3px rgba(255, 215, 0, 1), 0 0 6px rgba(255, 215, 0, 0.8), 0 0 12px rgba(255, 215, 0, 0.6)",
+            }}
+          >
             <Link href="/privacy">Privacy Policy</Link>
           </li>
           |
-          <li className="transition-colors duration-300 hover:text-green-900">
+          <li
+            className="transition-colors duration-300 hover:text-green-900"
+            style={{
+              textShadow:
+                "0 0 3px rgba(255, 215, 0, 1), 0 0 6px rgba(255, 215, 0, 0.8), 0 0 12px rgba(255, 215, 0, 0.6)",
+            }}
+          >
             <Link href="/rules">Terms & Conditions</Link>
           </li>
           |
-          <li className="transition-colors duration-300 hover:text-green-900">
+          <li
+            className="transition-colors duration-300 hover:text-green-900"
+            style={{
+              textShadow:
+                "0 0 3px rgba(255, 215, 0, 1), 0 0 6px rgba(255, 215, 0, 0.8), 0 0 12px rgba(255, 215, 0, 0.6)",
+            }}
+          >
             <Link href="/guidelines">Guidelines</Link>
           </li>
           |
-          <li className="transition-colors duration-300 hover:text-green-900">
+          <li
+            className="transition-colors duration-300 hover:text-green-900"
+            style={{
+              textShadow:
+                "0 0 3px rgba(255, 215, 0, 1), 0 0 6px rgba(255, 215, 0, 0.8), 0 0 12px rgba(255, 215, 0, 0.6)",
+            }}
+          >
             <Link href="/refund">Refund Policy</Link>
           </li>
           |
-          <li className="transition-colors duration-300 hover:text-green-900">
+          <li
+            className="transition-colors duration-300 hover:text-green-900"
+            style={{
+              textShadow:
+                "0 0 3px rgba(255, 215, 0, 1), 0 0 6px rgba(255, 215, 0, 0.8), 0 0 12px rgba(255, 215, 0, 0.6)",
+            }}
+          >
             <Link href="/contact">Contact Us</Link>
           </li>
         </ul>
       )}
       {!show && (
-        <p className="text-center text-xs mx-auto">
+        <p className="text-center mx-auto">
           <Link
             className="flex items-center justify-center tracking-normal transition-all hover:tracking-widest hover:text-green-900"
+            style={{ textShadow: "0 0 1px rgba(255, 215, 0, 1)" }}
             href="/team"
           >
             Made with <BsFillSuitHeartFill className="mx-2 fill-red-700" /> by
@@ -365,7 +394,7 @@ export const HomeUi = () => {
         </div>
         {/* <div data-depth="0.05" className="absolute w-screen h-screen z-[19]">
           <Image
-            src={`/assets/landing/EOEShadow.webp`}
+            src={`/2025/landing/EOEShadow.webp`}
             priority
             width={640}
             height={640}

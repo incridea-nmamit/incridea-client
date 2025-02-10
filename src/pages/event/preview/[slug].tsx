@@ -120,7 +120,7 @@ const Page = ({
     <div className={`relative flex items-center justify-center`}>
       <Image
         alt="events-bg"
-        src="/assets/eventSlug/eventBg.jpg"
+        src="/2025/eventBg.jpg"
         height={1920}
         width={1080}
         priority

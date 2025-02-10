@@ -22,14 +22,14 @@ export default function Game() {
       <GameProvider>
         <div className="relative w-screen h-screen select-none overflow-hidden">
           <Image
-            src="/assets/game/background/backdrop.webp"
+            src="/2025/explore/throwspear/background/backdrop.webp"
             alt="backdrop"
             width={3200}
             height={1323}
             className="h-screen z-0 absolute top-0 left-0 object-cover"
           />
           <Image
-            src="/assets/game/background/backdrop1.png"
+            src="/2025/explore/throwspear/background/backdrop1.png"
             alt="backdrop"
             width={3200}
             height={1323}
@@ -188,7 +188,7 @@ function Instruction() {
               </h1>
               <Image
                 className="mb-4"
-                src="/assets/game/ROTAR.gif"
+                src="/2025/assets/explore/throwspear/ROTAR.gif"
                 alt="Rotate Device"
                 width={100}
                 height={100}

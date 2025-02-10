@@ -69,6 +69,15 @@ export const lifeCraft = LocalFont({
   style: "normal",
 });
 
+// Have to delete this font since it's only used in coming soon page
+export const blackChancery = LocalFont({
+  src: "../font/BlackChancery.ttf",
+  weight: "400",
+  variable: "--font-black-chancery",
+  display: "swap",
+  style: "normal",
+});
+
 export default function App({
   Component,
   pageProps: { session: _session, ...pageProps },
@@ -116,7 +125,8 @@ export default function App({
 
   const shouldRenderNavbar =
     !router.pathname.startsWith("/explore") &&
-    !router.pathname.startsWith("/theme");
+    !router.pathname.startsWith("/theme") &&
+    !router.pathname.startsWith("/coming-soon");
 
   return (
     <>
@@ -136,6 +146,7 @@ export default function App({
               className={cn(
                 trap.variable,
                 lifeCraft.variable,
+                blackChancery.variable,
                 "min-h-screen font-trap tracking-wider text-lg",
               )}
             >

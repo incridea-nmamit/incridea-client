@@ -13,7 +13,7 @@ export default function Footer() {
   if (
     router.pathname === "/" ||
     router.pathname === "/gallery" ||
-    router.pathname.startsWith("/explore/") ||
+    router.pathname.startsWith("/explore") ||
     router.pathname === "/pronites" ||
     router.pathname.startsWith("/event/")
   ) {

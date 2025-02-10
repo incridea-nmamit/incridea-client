@@ -144,10 +144,8 @@ function Band({
     angularDamping: 2,
     linearDamping: 2,
   };
-  const { nodes, materials } = useGLTF(
-    "/assets/3d/profile_tag.glb",
-  ) as BadgeGLTF;
-  const texture = useTexture("/assets/png/badgelogo.png");
+  const { nodes, materials } = useGLTF("/2025/3d/profile_tag.glb") as BadgeGLTF;
+  const texture = useTexture("/2025/badgelogo.png");
   const { width, height } = useThree((state) => state.size);
   const [curve] = useState(
     () =>
@@ -469,7 +467,7 @@ function Band({
   );
 }
 
-useGLTF.preload("/assets/3d/profile_tag.glb");
+useGLTF.preload("/2025/3d/profile_tag.glb");
 extend({ MeshLineGeometry, MeshLineMaterial });
 
 declare module "@react-three/fiber" {

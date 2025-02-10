@@ -244,6 +244,7 @@ const config: Config = {
       fontFamily: {
         trap: "var(--font-trap)",
         "life-craft": "var(--font-life-craft)",
+        "black-chancery": "var(--font-black-chancery)",
       },
       colors: {
         primary: {

@@ -112,7 +112,7 @@ const Navbar = () => {
           style={{
             clipPath: "polygon(0 0, 100% 0, 75% 100%, 25% 100%)",
           }}
-          className={`absolute top-0 ${pathname === "/" ? "bg-gradient-to-br from-[#186C16] to-[#186C16] via-primary-950" : "bg-white"} px-12 py-2 text-white text-3xl shadow-md flex rounded-b-xl justify-center items-center hover:bg-gray-100 transition-all scale-[250%] hover:scale-[260%]`}
+          className={`absolute top-0 ${pathname === "/" ? "bg-gradient-to-br from-[#186C16] to-[#186C16] via-primary-950" : "bg-white"} px-12 py-2 text-white text-2xl shadow-md flex rounded-b-xl justify-center items-center hover:bg-gray-100 transition-all scale-[250%] hover:scale-[260%]`}
         >
           <div className="relative w-16 h-6 flex justify-center items-center">
             <Image
@@ -136,7 +136,7 @@ const Navbar = () => {
               }
               className={cn(
                 pathname === "/" ? "text-white" : "text-black",
-                "absolute scale-[60%] translate-y-1",
+                "absolute scale-[60%] translate-y-[0.4rem]",
               )}
             >
               {!user

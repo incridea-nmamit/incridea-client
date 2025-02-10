@@ -33,7 +33,7 @@ const UserEvents: FC<{
     <section className="w-full h-full flex flex-col items-center justify-center">
       <div className="w-full h-full flex flex-col flex-nowrap border-2 rounded-lg bg-gradient-to-br  from-primary-900/80 via-primary-700/80 to-primary-900/80 backdrop-blur-sm border-secondary-500/50">
         <div className="text-white">
-          <h1 className="text-center font-life-craft md:text-6xl text-4xl mt-6 font-bold">
+          <h1 className="text-center font-life-craft md:text-6xl text-4xl mt-6 tracking-wider">
             MY VOYAGES
           </h1>
           <div className="mx-auto border-2 border-secondary-400/80 w-fit rounded-full p-1 px-2 mt-4">

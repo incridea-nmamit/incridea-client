@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from "react";
 import LoginCard from "~/components/login/card";
 import EasterBomb from "~/components/login/easterBomb";
 import FallingItem from "~/components/login/fallingItem";
-import LoginPortal from "~/components/login/portal";
 import { env } from "~/env";
 
 type CardStyle = {
@@ -83,7 +82,7 @@ const SignIn: NextPage = () => {
   ) => void = (newForm) => {
     if (whichForm === newForm || transitioning) return;
 
-    const audio1 = new Audio("/assets/audio/gearsounds.mp3");
+    const audio1 = new Audio("/2025/audio/gearsounds.mp3");
     audio1
       .play()
       .then(() => {
@@ -196,7 +195,7 @@ const SignIn: NextPage = () => {
       <Image
         fill={true}
         className="object-cover blur-[3px]"
-        src={`/assets/jpeg/bg-login.jpeg`}
+        src={`/2025/bg-login.jpeg`}
         alt={"loginBG"}
         quality={100}
         priority
@@ -205,8 +204,6 @@ const SignIn: NextPage = () => {
       <div
         className={`relative flex min-h-[73vh] h-screen flex-col justify-between [perspective:500px] [transform-style:preserve-3d] overflow-hidden`}
       >
-        {/* <LoginPortal isTop={true} /> */}
-
         {/* TODO: Change the time delay here according to time delay set for free-fall animation in tailwind.config.js */}
         {/* 
         <div className="absolute -top-[10vh] left-2/4 z-30 h-0 w-[65vw] -translate-x-2/4 md:w-[440px]">
@@ -229,7 +226,7 @@ const SignIn: NextPage = () => {
             className="absolute scale-150 translate-y-1/2"
           >
             <div className="relative size-full">
-              <Image src="/assets/png/gear.webp" alt="" fill priority />
+              <Image src="/2025/gear.webp" alt="" fill priority />
             </div>
           </div>
           <div
@@ -243,7 +240,7 @@ const SignIn: NextPage = () => {
             className="fixed translate-y-1/2 h-full scale-[1.85]"
           >
             <div className="absolute size-full">
-              <Image src="/assets/png/gear.webp" alt="" priority fill />
+              <Image src="/2025/gear.webp" alt="" priority fill />
             </div>
             <div className="size-full relative">
               <LoginCard

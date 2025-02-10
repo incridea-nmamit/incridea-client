@@ -148,7 +148,7 @@ const Page = ({ event, error }: Props) => {
     <div className={`relative flex justify-center items-center`}>
       <Image
         alt="events-bg"
-        src="/assets/eventSlug/eventBg.jpg"
+        src="/2025/eventBg.jpg"
         height={1920}
         width={1080}
         priority
@@ -220,7 +220,7 @@ const Page = ({ event, error }: Props) => {
                 <div className={`order-2 w-full space-y-1.5`}>
                   {/* <hr className="w-48 h-1 mx-auto my-4 bg-secondary-800 border-0 rounded " /> */}
                   <h2
-                    className={`mb-2 font-VikingHell text-2xl tracking-wider md:text-4xl text-[#D79128]`}
+                    className={`mb-2  text-2xl tracking-wider md:text-4xl text-[#D79128]`}
                   >
                     Details
                   </h2>
@@ -319,7 +319,7 @@ const Page = ({ event, error }: Props) => {
               >
                 <div className={`order-3 w-full`}>
                   <h2
-                    className={`mb-2 font-VikingHell text-2xl tracking-wider md:text-4xl text-[#D79128]`}
+                    className={`mb-2 text-2xl tracking-wider md:text-4xl text-[#D79128]`}
                   >
                     Organizers
                   </h2>

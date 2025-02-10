@@ -62,7 +62,7 @@ const ComingSoonComponent = () => {
       <div className="md:w-[60%] w-[80%] h-52 lg:h-96 z-20 flex justify-center items-center">
         <MorphingText
           texts={["Coming Soon", "Echoes of Eternity"]}
-          className="font-black-chancery lg:text-[9rem] md:text-[6rem] text-[4rem] text-yellow-400 text-center min-w-full self-center justify-self-center"
+          className="font-life-craft tracking-widest lg:text-[9rem] md:text-[6rem] text-[4rem] text-yellow-400 text-center min-w-full self-center justify-self-center"
         />
       </div>
       <div className="absolute w-full h-full z-20">

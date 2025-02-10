@@ -12,7 +12,7 @@ function Theme() {
   return (
     <div className="h-screen w-screen bg-black flex justify-center items-center">
       <Image
-        src={"/assets/png/logo.png"}
+        src={"/2025/logo.png"}
         className="animate-pulse"
         alt="logo"
         width={300}

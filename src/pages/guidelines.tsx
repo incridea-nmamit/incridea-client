@@ -3,13 +3,13 @@ import { CONSTANT } from "~/constants";
 
 const Guidelines: NextPage = () => {
   return (
-    <div className="overflow-y-auto overflow-x-hidden text-gray-100 p-10 pt-20">
+    <div className="overflow-y-auto overflow-x-hidden text-gray-100 p-10 pt-32">
       <div className="mx-auto w-full max-w-7xl">
         <h1 className={`text-center text-6xl font-life-craft tracking-wider`}>
           Guidelines and Regulations for Participating in Incridea 2025
         </h1>
         <div className="">
-          <p className="mt-2 text-center">
+          <p className="mt-6 text-center">
             The fest is open to all students from engineering as well as Nitte
             sister institutions. This article outlines the guidelines and
             regulations that participants need to follow.

@@ -26,7 +26,7 @@ const SponsorGearCarousel = ({
   const isAnimating = useRef(false);
 
   useEffect(() => {
-    audioRef.current = new Audio("/assets/audio/GearClockAudio.mp3");
+    audioRef.current = new Audio("/2025/audio/GearClockAudio.mp3");
     if (audioRef.current) {
       audioRef.current.volume = 0.2;
     }

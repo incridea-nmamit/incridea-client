@@ -3,7 +3,6 @@ import Image from "next/image";
 
 import ResetPassword from "~/components/form/resetPassword";
 import { useEffect, useState } from "react";
-import LoginPortal from "~/components/login/portal";
 import { env } from "~/env";
 
 const Reset: NextPage = () => {
@@ -88,7 +87,7 @@ const Reset: NextPage = () => {
       <Image
         fill={true}
         className="mt-16 object-cover"
-        src={`/assets/jpeg/bg-login.jpeg`}
+        src={`/2025/bg-login.jpeg`}
         alt={"loginBG"}
         quality={100}
         priority
@@ -111,7 +110,7 @@ const Reset: NextPage = () => {
             }}
             className="absolute scale-150 translate-y-1/2"
           >
-            <img src="/assets/png/gear.webp" alt="" className="size-full" />
+            <img src="/2025/gear.webp" alt="" className="size-full" />
           </div>
           <div
             style={{
@@ -123,11 +122,7 @@ const Reset: NextPage = () => {
             }}
             className="fixed translate-y-1/2 h-full scale-[1.85]"
           >
-            <img
-              src="/assets/png/gear.webp"
-              alt=""
-              className="absolute size-full"
-            />
+            <img src="/2025/gear.webp" alt="" className="absolute size-full" />
 
             <div className="size-full relative">
               <ResetPassword />

@@ -5,9 +5,9 @@ import Image from "next/image";
 import React, { useContext, useRef } from "react";
 import { LoaderContext } from "./loaderContext";
 
-const circleImage = "/2025/loader/portal/circle.png";
-const backgroundImage = "/2025/loader/portal/background.png";
-const logoImage = "/2025/loader/portal/logo-combined.png";
+const circleImage = "/2025/landing/loader/circle.png";
+const backgroundImage = "/2025/landing/loader/background.png";
+const logoImage = "/2025/landing/loader/logo-combined.png";
 
 export default function BlackHoleLoader() {
   const background = useRef(null);
