@@ -47,6 +47,7 @@ const ConfirmTeamModal: FC<{
 
   return (
     <>
+      <br />
       <Button
         className="mt-1 rounded-full hover:rounded-full transition-all duration-300"
         onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

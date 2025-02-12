@@ -50,7 +50,7 @@ const TeamCard = ({
 
   return (
     <div className="flex flex-col">
-      <div className="relative mb-4 mt-5 flex w-full flex-col items-start justify-center rounded-md border border-secondary-400/40 bg-primary-200/20 p-5">
+      <div className="relative mb-4 mt-5 flex w-full flex-col items-start justify-center rounded-md border border-secondary-400/40 bg-black bg-opacity-15  p-5">
         <div className="w-full text-center">
           {team.confirmed ? (
             team.event.eventType === EventType.Individual ||
@@ -125,7 +125,7 @@ const TeamCard = ({
               ) : (
                 <Badge
                   color={"success"}
-                  className="absolute right-1/2 top-0 inline-flex -translate-y-1/2 translate-x-1/2 items-center gap-1 !border-secondary-400/40 bg-primary-300 text-sm !text-white"
+                  className="absolute right-1/2 top-0 inline-flex -translate-y-1/2 translate-x-1/2 items-center gap-1 !border-secondary-400/40 bg-[#D79128] text-sm !text-white"
                 >
                   <BiCheckDouble /> Registered
                 </Badge>

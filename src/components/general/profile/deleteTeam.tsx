@@ -60,7 +60,7 @@ const DeleteTeamModal: FC<{
       </div>
 
       <Dialog open={showModal} onOpenChange={setShowModal}>
-        <DialogContent>
+        <DialogContent className="z-50">
           <DialogHeader>
             <DialogTitle>Are you absolutely sure?</DialogTitle>
             <DialogDescription>

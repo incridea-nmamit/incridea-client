@@ -105,7 +105,7 @@ export default function ViewEventModal({
               className="absolute bottom-5 right-10"
               href={`/event/preview/${event.id}`}
             >
-              <Button intent={"secondary"}>Preview</Button>
+              <Button intent="primary">Preview</Button>
             </Link>
           </div>
 
@@ -114,7 +114,7 @@ export default function ViewEventModal({
               attr.text ? (
                 <div
                   key={attr.name}
-                  className="flex shrink-0 grow items-center gap-2 rounded-lg bg-gray-600 px-3 py-2"
+                  className="flex shrink-0 grow items-center gap-2 rounded-lg border border-[#D79128] bg-[#D79128] backdrop-blur-md bg-opacity-35 px-3 py-2"
                 >
                   {<attr.Icon />}
                   <p>
@@ -127,7 +127,7 @@ export default function ViewEventModal({
               ),
             )}
           </div>
-          <div className="mt-2.5 rounded-lg bg-gray-600 p-3">
+          <div className="mt-2.5 rounded-lg border border-[#D79128] bg-[#D79128] backdrop-blur-md bg-opacity-35 p-3">
             <div className="mb-3 flex items-center gap-2">
               <IoCreateOutline />
               <p className="font-semibold">Description</p>

@@ -56,7 +56,7 @@ const CreateTeamModal = ({ eventId }: { eventId: Event["id"] }) => {
           className="flex w-full flex-col gap-3 px-5 pb-5 md:px-6 md:pb-6"
         >
           <div className="flex flex-col gap-2">
-            <label htmlFor="teamName" className="font-semibod text-gray-300">
+            <label htmlFor="teamName" className="font-semibod text-white">
               Team Name
             </label>
             <input
@@ -66,13 +66,14 @@ const CreateTeamModal = ({ eventId }: { eventId: Event["id"] }) => {
               name="teamName"
               id="teamName"
               required
-              className="w-full rounded-full bg-primary-600 px-2 py-1 ring-primary-200/40 focus:outline-none focus:ring"
+              className="w-full rounded-xl border border-[#D79128] bg-[#054432] bg-opacity-70 py-1 px-2 backdrop-blur-xl backdrop-filter"
             />
           </div>
           <Button
-            className="w-full !skew-x-0 items-center !justify-center rounded-full !tracking-normal"
+            className="w-full !skew-x-0 py-2 items-center !justify-center rounded-full !tracking-normal"
             type="submit"
-            intent="success"
+            intent="primary"
+            size="small"
           >
             Create Team
           </Button>

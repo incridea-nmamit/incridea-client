@@ -24,7 +24,7 @@ const Modal: FC<ModalProps> = ({
 }) => {
   return (
     <Transition appear show={showModal} as={Fragment}>
-      <Dialog as="div" className="relative z-[900]" onClose={onClose}>
+      <Dialog as="div" className="relative z-[20]" onClose={onClose}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -53,7 +53,7 @@ const Modal: FC<ModalProps> = ({
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel
-                className={`w-full max-w-6xl transform overflow-hidden rounded-${rounded} bg-emerald-600/70 text-left align-middle text-gray-100 shadow-xl backdrop-blur-xl transition-all`}
+                className={`w-full max-w-6xl transform overflow-hidden rounded-${rounded} border border-[#D79128] bg-[#054432] bg-opacity-90 text-left align-middle text-gray-100 shadow-xl backdrop-blur-xl transition-all backdrop-filter`}
               >
                 <Dialog.Title
                   as="div"
@@ -62,7 +62,7 @@ const Modal: FC<ModalProps> = ({
                   }`}
                 >
                   <h3
-                    className={`text-lg font-medium leading-6 text-amber-200 ${
+                    className={`text-lg font-medium leading-6 text-[#D79128] ${
                       size === "small" && "text-center"
                     }`}
                   >

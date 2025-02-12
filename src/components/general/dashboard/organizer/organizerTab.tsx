@@ -24,15 +24,15 @@ function OrganizerTab({ organizerId }: { organizerId: string }) {
       as={"div"}
       className="mt-5 overflow-hidden border-0 border-gray-900/40 sm:rounded-xl"
     >
-      <Tab.List className="flex w-full overflow-x-auto bg-gray-600/60 backdrop-blur-md">
+      <Tab.List className="flex w-full overflow-x-auto bg-black bg-opacity-10 backdrop-blur-md">
         {data.eventByOrganizer.map((event) => (
           <Tab className="focus:outline-none" key={event.id}>
             {({ selected }) => (
               <button
                 className={`whitespace-nowrap p-3 text-base font-semibold transition-colors sm:px-5 sm:py-4 sm:text-lg ${
                   selected
-                    ? "bg-gray-900 text-white shadow-lg shadow-black"
-                    : "bg-transparent text-white hover:bg-gray-800/60"
+                    ? "bg-black bg-opacity-10 backdrop-blur-md-900 text-[#D79128] shadow-lg shadow-black"
+                    : "bg-transparent text-white hover:bg-[#054432]/60"
                 }`}
               >
                 {event.name}
@@ -42,13 +42,15 @@ function OrganizerTab({ organizerId }: { organizerId: string }) {
         ))}
       </Tab.List>
       <Tab.Panels>
-        <div className="bg-gray-900 p-0 pt-3 sm:p-5">
+        <div className="bg-black bg-opacity-20 backdrop-blur-md p-0 pt-3 sm:p-5">
           {data.eventByOrganizer.map((event) => (
             <Tab.Panel className="space-y-3" key={event.id}>
-              <div className="flex flex-wrap items-center justify-between gap-5 rounded-lg border-gray-600 bg-gray-900/30 py-3 backdrop-blur-md">
+              <div className="flex flex-wrap items-center justify-between gap-5 rounded-lg border-gray-600 bg-[#054432]/30 px-3 py-3 backdrop-blur-md">
                 <div className="flex gap-3 px-5 sm:px-0">
-                  <h2 className="text-2xl font-bold">{event.name}</h2>
-                  <p className="flex h-fit items-center justify-center rounded-md border border-green-400 px-2 leading-8 text-green-400">
+                  <h2 className="text-2xl font-bold text-[#D79128]">
+                    {event.name}
+                  </h2>
+                  <p className="flex h-fit items-center justify-center rounded-md border border-white px-2 leading-8 text-white">
                     {event.branch.name}
                   </p>
                 </div>

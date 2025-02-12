@@ -53,7 +53,7 @@ const RoundEventModal: FC<{
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-gray-700/70 text-left align-middle text-gray-100 shadow-xl backdrop-blur-xl transition-all">
+                <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl border border-[#D79128] bg-[#054432] bg-opacity-70 p-5 text-left align-middle text-gray-100 shadow-xl backdrop-blur-xl transition-all">
                   <Dialog.Title
                     as="div"
                     className="flex items-center justify-between p-5 md:p-6"
