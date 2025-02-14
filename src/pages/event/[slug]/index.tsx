@@ -26,19 +26,24 @@ import {
   PublishedEventsSlugDocument,
 } from "~/generated/generated";
 import { client } from "~/lib/apollo";
-import { usePathname } from 'next/navigation'
+import { usePathname } from "next/navigation";
 
 type Props =
   | {
-    event: Extract<NonNullable<QueryResult<EventByIdQuery, EventByIdQueryVariables>["data"]>["eventById"], {
-      __typename: "QueryEventByIdSuccess";
-    }>["data"];
-    error?: never;
-  }
+      event: Extract<
+        NonNullable<
+          QueryResult<EventByIdQuery, EventByIdQueryVariables>["data"]
+        >["eventById"],
+        {
+          __typename: "QueryEventByIdSuccess";
+        }
+      >["data"];
+      error?: never;
+    }
   | {
-    event?: never;
-    error: string;
-  };
+      event?: never;
+      error: string;
+    };
 
 const getStaticPaths: GetStaticPaths = async () => {
   const { data: events } = await client.query({
@@ -47,8 +52,9 @@ const getStaticPaths: GetStaticPaths = async () => {
 
   const paths = events.publishedEvents.map((event) => ({
     params: {
-      slug: `${event.name.toLocaleLowerCase().split(" ").join("-")}-${event.id
-        }`,
+      slug: `${event.name.toLocaleLowerCase().split(" ").join("-")}-${
+        event.id
+      }`,
     },
   }));
 
@@ -94,7 +100,7 @@ const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 };
 
 const Page = ({ event, error }: Props) => {
-  const pathname = usePathname()
+  const pathname = usePathname();
   const getEventAttributes = () => {
     if (!event) return [];
 
@@ -164,7 +170,12 @@ const Page = ({ event, error }: Props) => {
         className={`w-screen h-screen object-cover object-center top-0 left-0 absolute`}
       />
       <Toaster />
-      <EventSEO title={event?.name} description={event?.description} image={event?.image} url={pathname} />
+      <EventSEO
+        title={event?.name}
+        description={event?.description}
+        image={event?.image}
+        url={pathname}
+      />
       {error && (
         <div
           className={`absolute inset-0 flex h-screen flex-col items-center justify-center gap-5 p-10 text-white`}
@@ -197,7 +208,7 @@ const Page = ({ event, error }: Props) => {
             className={`lg:no-scrollbar overflow-x-visible px-3 pt-20 lg:h-full lg:overflow-y-scroll lg:pb-8`}
           >
             <div
-              className={`basis-1/3 rounded-xl border border-[#D79128] bg-[#054432] bg-opacity-70 p-5 backdrop-blur-xl  backdrop-filter`}
+              className={`basis-1/3 rounded-xl border border-[#D79128] bg-[#054432] bg-opacity-70 p-5 backdrop-blur-xl  backdrop-filter max-sm:mt-3 max-sm:p-2`}
             >
               <div className={`grow-0 space-y-4 rounded-md sm:space-y-10`}>
                 {event.image && (
@@ -214,7 +225,7 @@ const Page = ({ event, error }: Props) => {
                 >
                   {event.name}
                 </h1>
-                <div className={`px-4 pb-4 sm:p-0`}>
+                <div className={`sm:px-4 sm:pb-4 sm:p-0`}>
                   <EventDetails details={event.description ?? ""} />
                 </div>
               </div>
@@ -274,12 +285,12 @@ const Page = ({ event, error }: Props) => {
                               </span>
                               {round.date
                                 ? new Date(round.date).toLocaleDateString(
-                                  "en-IN",
-                                  {
-                                    day: "numeric",
-                                    month: "short",
-                                  },
-                                )
+                                    "en-IN",
+                                    {
+                                      day: "numeric",
+                                      month: "short",
+                                    },
+                                  )
                                 : ""}
                             </p>
                             <p
@@ -291,13 +302,13 @@ const Page = ({ event, error }: Props) => {
                               </span>
                               {round.date
                                 ? new Date(round.date).toLocaleDateString(
-                                  "en-IN",
-                                  {
-                                    hour: "numeric",
-                                    minute: "numeric",
-                                    hour12: true,
-                                  },
-                                )
+                                    "en-IN",
+                                    {
+                                      hour: "numeric",
+                                      minute: "numeric",
+                                      hour12: true,
+                                    },
+                                  )
                                 : ""}
                             </p>
                           </div>

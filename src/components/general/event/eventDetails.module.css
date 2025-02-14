@@ -103,3 +103,66 @@
 .markup * {
   color: white !important;
 }
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .markup h1 {
+    font-size: 2rem !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .markup h2 {
+    font-size: 1.75rem !important;
+    margin-top: 1.25rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .markup h3 {
+    font-size: 1.5rem !important;
+    margin-top: 1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .markup h4 {
+    font-size: 1.25rem !important;
+    margin-top: 0.75rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .markup h5 {
+    font-size: 1rem !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .markup h6 {
+    font-size: 0.875rem !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .markup ul,
+  .markup ol {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .markup ul li,
+  .markup ol li {
+    margin-left: 0rem !important;
+    padding-left: 0.5rem !important;
+  }
+
+  .markup blockquote {
+    padding-left: 0.5rem !important;
+  }
+
+  .markup pre {
+    padding: 0rem !important;
+  }
+
+  .markup .public-DraftEditor-content {
+    min-height: 150px !important;
+  }
+}
