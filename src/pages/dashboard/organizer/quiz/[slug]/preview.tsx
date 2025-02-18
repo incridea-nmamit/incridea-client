@@ -38,6 +38,7 @@ import {
   Maximize2,
   Sliders,
   X,
+  Timer 
 } from "lucide-react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -45,7 +46,7 @@ import "swiper/css/navigation";
 import { useRouter } from "next/router";
 import { useAuth } from "~/hooks/useAuth";
 import { HelperTooltip } from "~/components/general/dashboard/organizer/quiz/HelperToolTip";
-import { IconStopwatch } from "@tabler/icons-react";
+
 
 const QuizPage = () => {
   const router = useRouter();
@@ -258,7 +259,7 @@ const QuizPage = () => {
           </h1>
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-2">
-              <IconStopwatch className="w-5 h-5 text-amber-400" />
+              <Timer  className="w-5 h-5 text-amber-400" />
               <span className="text-yellow-100">00:00</span>
             </span>
           </div>

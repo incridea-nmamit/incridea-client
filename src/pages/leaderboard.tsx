@@ -12,7 +12,7 @@ import { CONSTANT } from "~/constants";
 import { GetXpLeaderboardDocument } from "~/generated/generated";
 import { idToPid } from "~/utils/id";
 
-const techTeamPid = [11, 15, 2, 1, 10, 9, 509, 59, 4, 8, 13, 16, 291, 74];
+const techTeamPid = CONSTANT.PID.TECH_TEAM;
 
 const rankColors = {
   1: {
@@ -166,13 +166,13 @@ const LeaderBoard: NextPage = () => {
       )}
       <div className="relative min-h-screen bg-gradient-to-b">
         <div className="relative min-h-screen py-32">
-          <div className="flex flex-col items-center justify-center py-6">
-            <h1 className="py-6 font-life-craft text-7xl tracking-wider text-white">
+          <div className="flex flex-col items-center justify-center md:py-6">
+            <h1 className="font-life-craft text-5xl text-center md:text-7xl tracking-wider text-white">
               Time Stone Leaderboard
             </h1>
 
-            <h3 className="mx-2 text-center text-xl text-white md:mx-0 md:text-xl">
-              Uncover Hidden Time Stones and Level Up Your Experience!
+            <h3 className="mx-2 pt-4 text-center text-base text-white md:mx-0 md:text-xl">
+            Discover Hidden Time Stones & Participate in Events for Exciting Prizes!
             </h3>
           </div>
 
@@ -182,10 +182,10 @@ const LeaderBoard: NextPage = () => {
             XP Leaderboard
           </h1> */}
 
-          <div className="mx-5 mb-2 mt-10 flex h-16 items-center justify-evenly rounded-lg rounded-t-lg border border-primary-200/80 bg-primary-500 bg-opacity-20 bg-clip-padding p-1 text-sm font-bold text-white backdrop-blur-lg backdrop-filter md:mx-36 md:mt-7 md:text-2xl">
+          <div className="mx-5 mb-2 mt-10 flex h-16 items-center justify-evenly rounded-lg rounded-t-lg border border-primary-200/80 bg-primary-500 bg-opacity-20 bg-clip-padding p-1 text-xs font-bold text-white backdrop-blur-lg backdrop-filter md:mx-36 md:mt-7 md:text-xl lg:text-2xl">
             <h1 className="basis-1/4 text-center">Position</h1>
             <h1 className="basis-1/4 text-center">Timekeeper Id</h1>
-            <h1 className="basis-1/4 text-center">Timekeeper Name</h1>
+            <h1 className="basis-1/4 text-center">Name</h1>
             <h1 className="basis-1/4 text-center">Time Stones Gained</h1>
           </div>
           {leaderboardLoading && (
@@ -222,11 +222,11 @@ const LeaderBoard: NextPage = () => {
                     className="z-30 flex w-10 items-center justify-center bg-transparent text-5xl drop-shadow-md md:w-auto"
                   />
                 </h1>
-                <h1 className="mx-2 flex basis-1/4 items-center justify-center text-center text-sm font-semibold md:text-xl">
+                <h1 className="mx-2 flex basis-1/4 items-center justify-center text-center text-xs sm:text-sm font-semibold md:text-xl">
                   {idToPid(user.userId)}
                 </h1>
-                <h1 className="flex basis-1/4 items-center justify-center text-center text-sm font-semibold capitalize md:text-xl">
-                  {user.name}
+                <h1 className="flex basis-1/4 items-center justify-center text-center text-xs sm:text-sm font-semibold capitalize md:text-xl">
+                  {user.name.length > 23 ? user.name.slice(0, 23) + "..." : user.name}
                 </h1>
                 <h1 className="flex basis-1/4 flex-row items-center justify-center text-center text-sm font-semibold md:text-xl">
                   {user.levelPoints}
@@ -235,7 +235,7 @@ const LeaderBoard: NextPage = () => {
                     width={isMobile ? 40 : 100}
                     height={isMobile ? 40 : 100}
                     alt="Time Stone"
-                    className="absolute right-[2%] w-12 bg-transparent drop-shadow-md transition-all md:right-[2%] md:w-2 lg:right-[8%] lg:w-8"
+                    className="absolute right-[2%] w-5 bg-transparent drop-shadow-md transition-all md:right-[2%] md:w-2 lg:right-[8%] lg:w-8"
                   />
                 </h1>
               </div>

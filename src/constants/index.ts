@@ -38,7 +38,7 @@ const CONSTANT = {
   },
   PID: {
     PRONITE_USER: 669 as const,
-    TECH_TEAM: [11, 15, 2, 1, 10, 9, 509, 59, 4, 8, 13, 16, 291, 74],
+    TECH_TEAM: [1, 2, 5, 7, 9, 17, 18, 28, 36, 37, 39, 120, 125, 126, 127, 131, 498, 897, 1095]
   },
   SPONSORS: SPONSORS,
   TEAM_MEMBERS: TEAM_MEMBERS,

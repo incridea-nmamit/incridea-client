@@ -1,16 +1,20 @@
+import { useMutation } from "@apollo/client";
 import { Menu, Transition } from "@headlessui/react";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import { type GetStaticProps } from "next";
 import { useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BiCategory } from "react-icons/bi";
 import { CiWarning } from "react-icons/ci";
 import { IoTodayOutline } from "react-icons/io5";
-
+import { AuthStatus, useAuth } from "~/hooks/useAuth";
 import Event from "~/components/event";
 import { CONSTANT } from "~/constants";
 import {
+  AddXpDocument,
   EventCategory,
+  GetUserXpDocument,
   PublishedEventsDocument,
   type PublishedEventsQuery,
 } from "~/generated/generated";
@@ -47,7 +51,7 @@ const getStaticProps: GetStaticProps<Props> = async () => {
 
 const Page = ({ data }: Props) => {
   const containerRef = useRef(null);
-
+  const session = useAuth();
   const dayFilters = ["All", "DAY 1", "DAY 2", "DAY 3"];
 
   const [currentDayFilter, setCurrentDayFilter] =
@@ -58,6 +62,51 @@ const Page = ({ data }: Props) => {
   const [query, setQuery] = useState("");
 
   const [filteredEvents, setFilteredEvents] = useState(data || []);
+  const [calledXp, setCalledXp] = useState(false);
+
+  const [addXp] = useMutation(AddXpDocument, {
+    variables: {
+      levelId: "4",
+    },
+    refetchQueries: [GetUserXpDocument],
+    awaitRefetchQueries: true,
+  });
+
+  const handleAddXp = async () => {
+    if (session.status !== AuthStatus.AUTHENTICATED) {
+      toast.error("Please login to collect the Time Stones!", {
+        position: "bottom-center",
+        style: {
+          backgroundColor: "#f1e5d0",
+          color: "#005c39",
+          fontWeight: "bold",
+        },
+      });
+      return;
+    }
+  
+    if (calledXp) return;
+  
+    try {
+      setCalledXp(true);
+      const { data } = await addXp();
+      if (data?.addXP.__typename === "MutationAddXPSuccess")
+        toast.success(
+          `Congratulations! You have found ${data.addXP.data.level.point} Time Stones!`,
+          {
+            position: "bottom-center",
+            style: {
+              backgroundColor: "#f1e5d0",
+              color: "#005c39",
+              fontWeight: "bold",
+            },
+          },
+        );
+    } catch (error) {
+      console.error("Error adding timestone:", error);
+      setCalledXp(false);
+    }
+  };
 
   useEffect(() => {
     let tempFilteredEvents = data;
@@ -86,7 +135,7 @@ const Page = ({ data }: Props) => {
     setFilteredEvents(tempFilteredEvents);
   }, [currentDayFilter, currentCategoryFilter, data]);
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearch = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
     setCurrentDayFilter("All");
     setCurrentCategoryFilter(AllCategory.ALL);
@@ -98,6 +147,11 @@ const Page = ({ data }: Props) => {
           event.name.toLowerCase().includes(e.target.value.toLowerCase()),
         ),
       );
+    }
+    const searchValue = e.target.value.toLowerCase();
+    const searchArray = ["easteregg", "easter egg", "time stone", "timestone"];
+    if (searchArray.includes(searchValue)) {
+       await handleAddXp();
     }
   };
 

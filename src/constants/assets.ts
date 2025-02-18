@@ -1,6 +1,7 @@
 const ASSETS = {
   PUBLIC: {
     TAG_LOGO: "/2025/badgelogo.webp",
+    LOGO_I: "/2025/about/logo.webp",
     LOGO_RIM: "/2025/vertical_logo.webp",
     LOGO_RIM_WHITE: "/2025/logo-rim-white.webp",
     LOGO_BLACK: "/2025/logo.webp",

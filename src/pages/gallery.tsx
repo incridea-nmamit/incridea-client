@@ -161,12 +161,12 @@ const Gallery: NextPage = () => {
       >
         <div
           data-depth="0.4"
-          className="absolute -z-10
+          className={`absolute -z-10
              w-[140%] h-[140%] -mt-[20%] -mb-[20%]
              sm:w-[130%] sm:h-[130%] sm:-mt-[15%] sm:-mb-[15%]
              md:w-[120%] md:h-[120%] md:-mt-[10%] md:-mb-[10%]
-             bg-[url('/2025/gallery/galleryBg.webp')] bg-cover bg-center bg-no-repeat
-             blur-[5px] brightness-75"
+             ${activeYear === 3 ? "" : "bg-[url('/2025/gallery/galleryBg.webp')] bg-cover bg-center bg-no-repeat blur-[5px] brightness-75"}
+             `}
         ></div>
       </section>
       <div className="fixed flex h-screen w-full z-0 overflow-hidden">

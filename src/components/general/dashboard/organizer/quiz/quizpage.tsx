@@ -23,8 +23,8 @@ import {
   HourglassIcon,
   Sliders,
   X,
+  Timer 
 } from "lucide-react";
-import { IconStopwatch } from "@tabler/icons-react";
 import { useRouter } from "next/router";
 import createToast from "~/components/toast";
 import { HelperTooltip } from "~/components/general/dashboard/organizer/quiz/HelperToolTip";
@@ -306,7 +306,7 @@ const QuizPage = ({
           </h1>
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-2">
-              <IconStopwatch
+              <Timer 
                 className={`w-5 h-5 ${alert ? "text-red-500" : "text-amber-400"}`}
               />
               <span className={`${alert ? "text-red-500" : "text-amber-400"}`}>
