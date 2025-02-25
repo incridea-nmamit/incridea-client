@@ -29,7 +29,7 @@ const EasterEgg: NextPage = () => {
     },
   });
 
-  const day = getDay() as DayType; // "Day1" for test 
+  const day = getDay() as DayType; // Day1 for test 
   const cards = (cardsFromDb?.getCards ?? clues[day]) as Array<{ clue: string }>;
 
   const handleImageUpload = (index: number, url: string) => {
@@ -75,7 +75,7 @@ const EasterEgg: NextPage = () => {
           Find clues across the campus and upload them here
         </h2>
         <h2 className="mb-8 text-center text-xl font-semibold text-white">
-          Note: Your submissions are autosaved after uploading
+          Note: Click on submit to confirm your submission
         </h2>
         {Array.isArray(cards) && cards.length === 0 ? (
           <Spinner />
