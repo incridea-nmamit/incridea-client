@@ -30,7 +30,7 @@ const EasterEgg: NextPage = () => {
     },
   });
 
-  const day = getDay() as DayType; // Day1 for test 
+  const day = getDay() as DayType; // Day1 for test
 
   if (getDay() == "Day0") {
     return (
@@ -80,14 +80,14 @@ const EasterEgg: NextPage = () => {
     <div className="relative min-h-screen">
       <Toaster />
       <div className="flex flex-col items-center justify-center px-4 pb-12 pt-28 md:px-8">
-      <h2 className="mb-8 text-center text-4xl md:text-5xl text-white">
-        Upload Your Images!
-      </h2>
+        <h2 className="mb-8 text-center text-4xl md:text-5xl text-white">
+          Upload Your Images!
+        </h2>
         <h2 className="mb-4 text-center text-xl md:text-2xl text-white">
           Solve the riddles, find the clocks hidden across the campus, and upload your pictures here with the background.
         </h2>
         <h2 className="mb-8 text-center text-lg md:text-xl font-semibold text-white">
-          Note: Click on "Submit" to confirm your submission.
+          Note: Click on &quot;Submit&quot; to confirm your submission.
         </h2>
         <h2 className="mb-8 text-center text-lg md:text-xl font-semibold text-red-500">
           Important: Please do not destroy or damage any college property during your search.
@@ -96,7 +96,7 @@ const EasterEgg: NextPage = () => {
           <Spinner />
         ) : (
           <div className="flex max-w-6xl flex-wrap justify-center gap-4 md:gap-8 text-white/90">
-            {cards.map((card, index) => (
+            {cards?.__typename === "QueryGetCardsSuccess" && cards.data.map((card, index) => (
               <div
                 key={index}
                 className="flex min-w-[250px] md:min-w-[300px] basis-full flex-col rounded-md bg-black/20 shadow-sm md:basis-[45%]"
@@ -130,7 +130,7 @@ const EasterEgg: NextPage = () => {
                     onClick={async () => {
                       await submissionMutation({
                         variables: {
-                          cardId: card.id,
+                          cardId: Number(card.id),
                           image: images[index]!,
                         },
                       })
