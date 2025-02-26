@@ -30,17 +30,17 @@ const EasterEgg: NextPage = () => {
     },
   });
 
-  const day = "Day1"// getDay() as DayType; // Day1 for test 
+  const day = getDay() as DayType; // Day1 for test 
 
-  // if (getDay() == "Day0") {
-  //   return (
-  //     <div className="relative min-h-screen pt-18 flex items-center justify-center">
-  //       <div className="mt text-center text-3xl text-white/90 px-4">
-  //         🐣 Come back on 27th to start the Easter Egg Hunt!
-  //       </div>
-  //     </div>
-  //   );
-  // }
+  if (getDay() == "Day0") {
+    return (
+      <div className="relative min-h-screen pt-18 flex items-center justify-center">
+        <div className="mt text-center text-3xl text-white/90 px-4">
+          🐣 Come back on 27th to start the Easter Egg Hunt!
+        </div>
+      </div>
+    );
+  }
   const cards = (cardsFromDb?.getCards ?? clues[day]) as Array<{ clue: string, day: DayType, id: number }>;
 
   const handleImageUpload = (index: number, url: string) => {
@@ -60,7 +60,7 @@ const EasterEgg: NextPage = () => {
         </div>
       </div>
     );
-  if (status == AuthStatus.AUTHENTICATED)
+  if (status !== AuthStatus.AUTHENTICATED)
     return (
       <div className="relative min-h-screen pt-28">
         <div className="mt-10 flex flex-col items-center justify-center gap-3 text-center text-xl text-white/90">
