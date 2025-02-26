@@ -1,5 +1,5 @@
-query GetRegistrationsVSDate {
-  getRegistrationvsDate {
+query GetRegistrationVSDate($date: DateTime) {
+  getRegistrationvsDate(date: $date) {
     ... on Error {
       __typename
       message

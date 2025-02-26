@@ -1,5 +1,9 @@
 import { useQuery } from '@apollo/client';
+import Button from "~/components/button";
+import toast from "react-hot-toast";
 import React, { useState } from 'react'
+import { signOut } from "next-auth/react";
+import { LogOut } from "lucide-react";
 import Criterias from '~/components/general/dashboard/judge/criterias';
 import SelectedTeamList from '~/components/general/dashboard/judge/selectedTeamList';
 import TeamList from '~/components/general/dashboard/judge/teamList';
@@ -71,6 +75,20 @@ const JudgeTab = ({ shouldPoll }: { shouldPoll: boolean }) => {
         <h1 className="mb-3 text-2xl sm:text-3xl">
           Hello <span className="font-semibold">{user?.name}</span>!
         </h1>
+          {!isCompleted && (
+            <Button
+              intent={"danger"}
+              className="flex gap-2"
+              onClick={async () => {
+                toast.loading("Logging out...");
+                await signOut();
+                toast.success("Logged out successfully");
+              }}
+            >
+              Log Out
+              <LogOut />
+            </Button>
+          )}
         <h1 className="mb-3 text-2xl sm:text-3xl">
           {data?.roundByJudge.__typename === "QueryRoundByJudgeSuccess" && (
             <span>
@@ -80,13 +98,27 @@ const JudgeTab = ({ shouldPoll }: { shouldPoll: boolean }) => {
           )}
         </h1>
       </div>
-      {isCompleted && (
-        <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center bg-black/50">
-          <h1 className="text-3xl font-semibold text-white">
-            Thank you for judging this event!
-          </h1>
-        </div>
-      )}
+        {isCompleted && (
+          <div className="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center bg-black/50 z-50">
+            <h1 className="text-3xl font-semibold text-white mb-6">
+              Thank you for judging this event!
+            </h1>
+            <div className="mt-4 pointer-events-auto">
+              <Button
+                intent={"danger"}
+                className="flex gap-2"
+                onClick={async () => {
+                  toast.loading("Logging out...");
+                  await signOut();
+                  toast.success("Logged out successfully");
+                }}
+              >
+                Log Out
+                <LogOut />
+              </Button>
+            </div>
+          </div>
+        )}
       <div className="mb-10 flex min-h-[80vh] w-full flex-wrap justify-center gap-3 px-8 sm:flex-nowrap sm:px-0">
         <div className="w-full shrink-0 grow-0 rounded-lg bg-black/20 sm:w-auto sm:basis-1/2">
           {EventLoading ? (

@@ -55,7 +55,7 @@ const Analytics: NextPage = () => {
             </div>
           </>
         )}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid w-full grid-cols-2 md:grid-cols-3 gap-4">
           <div className="hidden md:block col-span-2">
             <Leaderboard />
           </div>
