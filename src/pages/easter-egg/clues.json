@@ -1,0 +1,19 @@
+{
+    "Day1": [
+      { "clue": "Clue 1 for Day 1" },
+      { "clue": "Clue 2 for Day 1" }
+    ],
+    "Day2": [
+      { "clue": "Clue 1 for Day 2" },
+      { "clue": "Clue 2 for Day 2" }
+    ],
+    "Day3": [
+      { "clue": "Clue 1 for Day 3" },
+      { "clue": "Clue 2 for Day 3" }
+    ],
+    "Day4": [
+      { "clue": "Clue 1 for Day 4" },
+      { "clue": "Clue 2 for Day 4" }
+    ]
+  }
+  
