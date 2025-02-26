@@ -41,7 +41,7 @@ const EasterEgg: NextPage = () => {
       </div>
     );
   }
-  const cards = (cardsFromDb?.getCards ?? clues[day]) as Array<{ clue: string, day: DayType, id: number }>;
+  const cards = (cardsFromDb?.getCards)  // ?? clues[day]) as Array<{ clue: string, day: DayType, id: number }>;
 
   const handleImageUpload = (index: number, url: string) => {
     setImages((prevImages) => {
@@ -80,14 +80,17 @@ const EasterEgg: NextPage = () => {
     <div className="relative min-h-screen">
       <Toaster />
       <div className="flex flex-col items-center justify-center px-4 pb-12 pt-28 md:px-8">
-        <h2 className="mb-8 text-center text-3xl md:text-4xl text-white">
-          Upload your images!
-        </h2>
-        <h2 className="mb-3 text-center text-lg md:text-xl text-white">
-          Find clues across the campus and upload them here
+      <h2 className="mb-8 text-center text-4xl md:text-5xl text-white">
+        Upload Your Images!
+      </h2>
+        <h2 className="mb-4 text-center text-xl md:text-2xl text-white">
+          Solve the riddles, find the clocks hidden across the campus, and upload your pictures here with the background.
         </h2>
         <h2 className="mb-8 text-center text-lg md:text-xl font-semibold text-white">
-          Note: Click on submit to confirm your submission
+          Note: Click on "Submit" to confirm your submission.
+        </h2>
+        <h2 className="mb-8 text-center text-lg md:text-xl font-semibold text-red-500">
+          Important: Please do not destroy or damage any college property during your search.
         </h2>
         {Array.isArray(cards) && cards.length === 0 ? (
           <Spinner />
