@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BiDownload } from "react-icons/bi";
 import { IoPeopleOutline } from "react-icons/io5";
+import Button from "~/components/button";
 
 import Dashboard from "~/components/layout/dashboard";
 import Spinner from "~/components/spinner";
@@ -330,6 +331,11 @@ const Jury = () => {
               <BiDownload />
               Winners
             </button>
+            <Link href="/dashboard/analytics">
+              <Button intent={"info"}>
+                Leaderboard
+              </Button>
+            </Link>
           </div>
           <div className="mx-auto hidden gap-3 font-semibold lg:flex lg:w-[800px]">
             {[Object.keys(EventCategory), Object.keys(AllCategory)].map((e) =>

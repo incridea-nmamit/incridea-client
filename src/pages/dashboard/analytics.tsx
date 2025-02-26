@@ -12,6 +12,7 @@ import Spinner from "~/components/spinner";
 import { Role } from "~/generated/generated";
 import Button from "~/components/button";
 import Link from "next/link";
+import RegistrationChart from "~/components/general/dashboard/analytics/registrationChart";
 
 const Analytics: NextPage = () => {
   const router = useRouter();
@@ -37,9 +38,14 @@ const Analytics: NextPage = () => {
   return (
     <Dashboard>
       <div className="p-2 flex justify-center items-center flex-col gap-4">
-        <Link href="/dashboard" className="self-end">
-          <Button intent={"danger"}>Go Back</Button>
-        </Link>
+        <div className="w-full flex justify-end items-center gap-3 mb-2">
+          {user.role === Role.Admin && (
+            <RegistrationChart />
+          )}
+          <Link href="/dashboard">
+            <Button intent={"danger"}>Go Back</Button>
+          </Link>
+        </div>
         {user.role === Role.Admin && (
           <>
             <div className="grid w-full md:grid-cols-3 gap-4 mb-4">

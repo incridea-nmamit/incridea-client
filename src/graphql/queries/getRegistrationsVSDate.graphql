@@ -1,0 +1,16 @@
+query GetRegistrationsVSDate {
+  getRegistrationvsDate {
+    ... on Error {
+      __typename
+      message
+    }
+    ... on QueryGetRegistrationvsDateSuccess {
+      __typename
+      data {
+        date
+        externalRegistrations
+        internalRegistrations
+      }
+    }
+  }
+}

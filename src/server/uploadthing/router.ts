@@ -173,6 +173,38 @@ export const uploadRouter = {
       console.log("Question image: ", data.file.key);
     }),
 
+  sponsor: f({
+    image: {
+      maxFileCount: 50,
+      maxFileSize: "512KB",
+    },
+  })
+    .middleware(async ({ req, res, files }) => {
+      const user = await authenticateUser(req, res);
+      if (!user || user.role !== Role.Admin)
+        throw new UploadThingError({
+          message: "Unauthorized",
+          code: "FORBIDDEN",
+        });
+      const customId = req.headers.custom_id as string | undefined;
+      return {
+        [UTFiles]: files.map((file) => ({
+          ...file,
+          ...(customId ? {
+            customId: customId.replace(/[\s\\/]/g, "_"),
+          } : {
+            customId: file.name + "_" + file.lastModified
+          })
+        })),
+      };
+    })
+    .onUploadError((error) => {
+      console.error("Error uploading team image: ", error);
+    })
+    .onUploadComplete((data) => {
+      console.log("Team image: ", data.file.key);
+    }),
+
   team: f({
     image: {
       maxFileCount: 50,
