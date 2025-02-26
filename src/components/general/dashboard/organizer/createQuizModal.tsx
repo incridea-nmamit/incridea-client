@@ -28,7 +28,7 @@ const CreateQuizModal: FC<{
 }> = ({ eventId, roundNo, roundDate, quizDetails }) => {
   const formatDate = (date: Date | string): string => {
     const inputDate = new Date(date).toISOString();
-    console.log("inputDate", inputDate);
+    // console.log("inputDate", inputDate);
     return inputDate;
   };
 

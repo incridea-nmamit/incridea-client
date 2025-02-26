@@ -1,5 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { Tab } from "@headlessui/react";
+import { differenceInHours } from "date-fns";
 import { EyeIcon } from "lucide-react";
 import Link from "next/link";
 import { QRCodeSVG } from "qrcode.react";
@@ -8,7 +9,6 @@ import { BiLoaderAlt, BiTrash } from "react-icons/bi";
 import { BsQrCodeScan } from "react-icons/bs";
 import { IoCopy } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
-import { differenceInHours } from "date-fns";
 
 import {
   Dialog,
@@ -62,7 +62,7 @@ const RoundsSidebar: FC<{
         eventId: eventId,
       },
       awaitRefetchQueries: true,
-    }
+    },
   );
 
   const [deleteJudge, { loading: deleteJudgeLoading }] = useMutation(
@@ -70,7 +70,7 @@ const RoundsSidebar: FC<{
     {
       refetchQueries: ["EventByOrganizer"],
       awaitRefetchQueries: true,
-    }
+    },
   );
 
   const [deleteCriteria, { loading: deleteCriteriaLoading }] = useMutation(
@@ -78,7 +78,7 @@ const RoundsSidebar: FC<{
     {
       refetchQueries: ["EventByOrganizer"],
       awaitRefetchQueries: true,
-    }
+    },
   );
 
   const [notifyParticipants, { loading: notifyLoading }] = useMutation(
@@ -86,7 +86,7 @@ const RoundsSidebar: FC<{
     {
       refetchQueries: ["EventByOrganizer"],
       awaitRefetchQueries: true,
-    }
+    },
   );
 
   const [showNotifyModal, setShowNotifyModal] = useState(false);
@@ -96,7 +96,7 @@ const RoundsSidebar: FC<{
     {
       refetchQueries: ["EventByOrganizer"],
       awaitRefetchQueries: true,
-    }
+    },
   );
 
   const [selectedRound, setSelectedRound] = useState(1);
@@ -137,9 +137,9 @@ const RoundsSidebar: FC<{
     if (hoursDifference > 2) {
       await createToast(
         Promise.reject(
-          new Error("Cannot notify more than 2 hours before the round")
+          new Error("Cannot notify more than 2 hours before the round"),
         ),
-        "Notification error"
+        "Notification error",
       );
       return;
     }
@@ -152,19 +152,11 @@ const RoundsSidebar: FC<{
     rounds.map((round) => {
       if (round.quiz?.endTime && new Date(round.quiz.endTime) < new Date()) {
         if (!round.quiz.completed) {
-          endQuizMutation({
+          void endQuizMutation({
             variables: {
               quizId: round.quiz.id,
             },
-          })
-            .then((res) => {
-              if (res.data?.endQuiz.__typename === "MutationEndQuizSuccess") {
-                console.log("Quiz Ended");
-              }
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+          });
         }
       }
     });
@@ -183,7 +175,7 @@ const RoundsSidebar: FC<{
           "MutationUpdateQuizStatusSuccess"
         )
           throw new Error(
-            res.data?.updateQuizStatus.message ?? "Error publishing quiz"
+            res.data?.updateQuizStatus.message ?? "Error publishing quiz",
           );
       })
       .catch(async (err) => {
@@ -199,10 +191,10 @@ const RoundsSidebar: FC<{
       await navigator.clipboard.writeText(copyString);
       await createToast(Promise.resolve(), "URL copied to clipboard");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       await createToast(
         Promise.reject(new Error("Failed to copy URL to clipboard")),
-        "Failed to copy URL to clipboard"
+        "Failed to copy URL to clipboard",
       );
     }
   };
@@ -406,7 +398,7 @@ const RoundsSidebar: FC<{
                                         className="rounded-md bg-black"
                                         onClick={() =>
                                           handleCopyURL(
-                                            `${env.NEXT_PUBLIC_THIS_APP_URL}/event/${round.quiz?.name}-${selectedRound}/quiz/${round.quiz?.id}`
+                                            `${env.NEXT_PUBLIC_THIS_APP_URL}/event/${round.quiz?.name}-${selectedRound}/quiz/${round.quiz?.id}`,
                                           )
                                         }
                                       >
@@ -431,7 +423,7 @@ const RoundsSidebar: FC<{
                                   onClick={() =>
                                     handlePublishQuiz(
                                       round.quiz?.id ?? "",
-                                      !round.quiz?.allowAttempts
+                                      !round.quiz?.allowAttempts,
                                     )
                                   }
                                   disabled={updateQuizStatusLoading}
@@ -459,7 +451,7 @@ const RoundsSidebar: FC<{
                                       Start Time:{" "}
                                     </span>
                                     {new Date(
-                                      round.quiz.startTime
+                                      round.quiz.startTime,
                                     ).toLocaleTimeString()}
                                   </p>
                                   <p>
@@ -467,7 +459,7 @@ const RoundsSidebar: FC<{
                                       End Time:{" "}
                                     </span>
                                     {new Date(
-                                      round.quiz.endTime
+                                      round.quiz.endTime,
                                     ).toLocaleTimeString()}
                                   </p>
                                   <p>
@@ -524,7 +516,7 @@ const RoundsSidebar: FC<{
                           eventId={eventId}
                           roundNo={selectedRound}
                           roundDate={new Date(
-                            round.date ?? new Date()
+                            round.date ?? new Date(),
                           ).toISOString()}
                           quizDetails={
                             round.quiz && {
@@ -555,7 +547,7 @@ const RoundsSidebar: FC<{
           notifyLoading ||
           differenceInHours(
             new Date(rounds[selectedIndex]?.date ?? ""),
-            new Date()
+            new Date(),
           ) > 2
         }
         className="m-2 flex items-center justify-center"
@@ -577,7 +569,7 @@ const RoundsSidebar: FC<{
             Do you really want to send notifications to all participants?
             <div className="mb-6 mt-6 flex justify-center gap-4">
               <Button
-                className=" transform rounded-md bg-emerald-600 text-amber-100 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-emerald-500"
+                className="transform rounded-md bg-emerald-600 text-amber-100 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-emerald-500"
                 intent={"dark"}
                 size={"medium"}
                 onClick={() => setShowNotifyModal(false)}
@@ -602,7 +594,7 @@ const RoundsSidebar: FC<{
                     }
                     if (message.data.includes("already sent")) {
                       throw new Error(
-                        "Notifications were already sent for this round"
+                        "Notifications were already sent for this round",
                       );
                     }
                     return message;
@@ -617,7 +609,7 @@ const RoundsSidebar: FC<{
                     await createToast(
                       Promise.reject(error),
                       "Sending notifications...",
-                      error.message
+                      error.message,
                     );
                   }
                 }}
