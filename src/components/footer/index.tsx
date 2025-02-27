@@ -26,7 +26,7 @@ export function FooterBody() {
     <div
       id="footer"
       style={{ willChange: "transform" }}
-      className={`relative snap-start`}
+      className={`fixed w-full bottom-0 top-full snap-start`}
     >
       <div className="-mt-1 flex flex-col items-center justify-between gap-5 bg-primary-900 p-5 text-gray-100 md:flex-row">
         <div className="md:basis-1/5">
