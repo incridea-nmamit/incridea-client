@@ -50,7 +50,7 @@ const Page = () => {
       className="h-fit flex w-screen md:p-8 p-4"
     >
       <div className="flex md:flex-row flex-col w-full mt-16 p-2 gap-8 h-full pb-8 relative">
-        <div className="md:w-[30rem] w-full h-auto rounded-lg overflow-hidden col-span-1 border-secondary-500/50 border-2 flex flex-col gap-0 md:sticky md:top-[10%]">
+        <div className="md:w-[30rem] w-full h-auto md:h-[85vh] rounded-lg overflow-hidden col-span-1 border-secondary-500/50 border-2 flex flex-col gap-0 md:sticky md:top-[10%]">
           <div className="w-full h-full relative">
             <AvatarModal
               showModal={showAvatarModal}
