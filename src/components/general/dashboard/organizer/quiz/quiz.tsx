@@ -66,12 +66,18 @@ function loadfromLocalStore<T>(key: string): T | null {
 }
 
 const Quiz: React.FC<{
-  event: Extract<EventByOrganizerQuery["eventByOrganizer"], {
-    __typename: "QueryEventByOrganizerSuccess"
-  }>["data"][number];
-  round: Extract<EventByOrganizerQuery["eventByOrganizer"], {
-    __typename: "QueryEventByOrganizerSuccess"
-  }>["data"][number]["rounds"];
+  event: Extract<
+    EventByOrganizerQuery["eventByOrganizer"],
+    {
+      __typename: "QueryEventByOrganizerSuccess";
+    }
+  >["data"][number];
+  round: Extract<
+    EventByOrganizerQuery["eventByOrganizer"],
+    {
+      __typename: "QueryEventByOrganizerSuccess";
+    }
+  >["data"][number]["rounds"];
 }> = ({ event, round }) => {
   const scrollToBottom = (divId: string) => {
     const targetdiv = document.getElementById(divId);
@@ -125,17 +131,17 @@ const Quiz: React.FC<{
   });
 
   const fetchFromLocal = () => {
-    console.log("Fetching from Local");
+    // console.log("Fetching from Local");
     if (typeof window !== "undefined") {
       const loadedQuestions =
         loadfromLocalStore<Question[]>(questionsKey) ?? [];
-      console.log(loadedQuestions);
+      // console.log(loadedQuestions);
       loadedQuestions.map((q) => {
         if (questions.findIndex((qq) => qq.id === q.id) === -1) {
-          console.log("THE FIRST");
+          // console.log("THE FIRST");
           setLocalQuestions((prev) => [...prev, q]);
         } else {
-          console.log("THE second");
+          // console.log("THE second");
           setLocalQuestions((prev) =>
             prev.map((qq) => {
               const newer = qq.id === q.id ? q : qq;
@@ -145,12 +151,12 @@ const Quiz: React.FC<{
         }
       });
     }
-    console.log("DONE FETCH CHANGED 2222");
+    // console.log("DONE FETCH CHANGED 2222");
     // setDoneFetchLocal(true);
   };
 
   const fetchFromDB = () => {
-    console.log("Fetching from DB");
+    // console.log("Fetching from DB");
     if (quizData) {
       const quiz = quizData.getQuizByEventRound;
       if (quiz.__typename === "QueryGetQuizByEventRoundSuccess") {
@@ -195,12 +201,12 @@ const Quiz: React.FC<{
         }
       }
     }
-    console.log("DONE FETCH CHANGED 11");
+    // console.log("DONE FETCH CHANGED 11");
     // setDoneFetchDB(true);
   };
 
   useEffect(() => {
-    console.log("FETCHING FROM DB AND LOCAL");
+    // console.log("FETCHING FROM DB AND LOCAL");
     fetchFromDB();
     fetchFromLocal();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -233,7 +239,7 @@ const Quiz: React.FC<{
       ];
       updatedQuestions.splice(prev.length, 0, newQuestion);
 
-      console.log("ADDED QUESTION: ", updatedQuestions);
+      // console.log("ADDED QUESTION: ", updatedQuestions);
       return updatedQuestions;
     });
   };
@@ -374,20 +380,20 @@ const Quiz: React.FC<{
         q.id === id
           ? q.mode === "view"
             ? {
-              ...q,
-              options: q.options.map((opt, i) =>
-                i === optionIndex ? value : opt,
-              ),
-              answer: q.ansIndex === optionIndex ? value : q.answer,
-              mode: "edit" as const,
-            }
+                ...q,
+                options: q.options.map((opt, i) =>
+                  i === optionIndex ? value : opt,
+                ),
+                answer: q.ansIndex === optionIndex ? value : q.answer,
+                mode: "edit" as const,
+              }
             : {
-              ...q,
-              options: q.options.map((opt, i) =>
-                i === optionIndex ? value : opt,
-              ),
-              answer: q.ansIndex === optionIndex ? value : q.answer,
-            }
+                ...q,
+                options: q.options.map((opt, i) =>
+                  i === optionIndex ? value : opt,
+                ),
+                answer: q.ansIndex === optionIndex ? value : q.answer,
+              }
           : q,
       ),
     );
@@ -399,12 +405,12 @@ const Quiz: React.FC<{
         localQuestions?.map((q) =>
           q.id === id
             ? {
-              ...q,
-              options: q.options.map((opt, i) =>
-                i === optionIndex ? value : opt,
-              ),
-              answer: q.ansIndex === optionIndex ? value : q.answer,
-            }
+                ...q,
+                options: q.options.map((opt, i) =>
+                  i === optionIndex ? value : opt,
+                ),
+                answer: q.ansIndex === optionIndex ? value : q.answer,
+              }
             : q,
         ) ?? [],
       );
@@ -433,23 +439,23 @@ const Quiz: React.FC<{
   ) => {
     setSave(false);
 
-    console.log("Answer Changed: ", e.target.name);
-    console.log("Answer Id: ", e.target.id);
+    // console.log("Answer Changed: ", e.target.name);
+    // console.log("Answer Id: ", e.target.id);
     setQuestions((prev) =>
       prev.map((q) =>
         q.id === id
           ? q.mode === "view"
             ? {
-              ...q,
-              ansIndex: optIndex,
-              answer: q.options[optIndex] ?? "",
-              mode: "edit" as const,
-            }
+                ...q,
+                ansIndex: optIndex,
+                answer: q.options[optIndex] ?? "",
+                mode: "edit" as const,
+              }
             : { ...q, ansIndex: optIndex, answer: q.options[optIndex] ?? "" }
           : q,
       ),
     );
-    console.log("Answer Changed: ", questions);
+    // console.log("Answer Changed: ", questions);
     const localQuestions = loadfromLocalStore<Question[]>(questionsKey);
     if (localQuestions?.findIndex((q) => q.id === id) !== -1) {
       saveToLocalStore<Question[]>(
@@ -457,10 +463,10 @@ const Quiz: React.FC<{
         localQuestions?.map((q) =>
           q.id === id
             ? {
-              ...q,
-              ansIndex: optIndex,
-              answer: q.options[optIndex] ?? "",
-            }
+                ...q,
+                ansIndex: optIndex,
+                answer: q.options[optIndex] ?? "",
+              }
             : q,
         ) ?? [],
       );
@@ -588,18 +594,18 @@ const Quiz: React.FC<{
         quizId: quizId,
         questions: localQuestions
           ? localQuestions.map((question) => ({
-            id: question.id,
-            question: question.questionText,
-            isCode: question.isCode,
-            options: question.options.map((opt, index) => ({
-              value: opt,
-              isAnswer: index === question.ansIndex,
-            })),
-            createdAt: question.createdAt,
-            description: question.description,
-            image: question.imageUrl,
-            mode: question.mode,
-          }))
+              id: question.id,
+              question: question.questionText,
+              isCode: question.isCode,
+              options: question.options.map((opt, index) => ({
+                value: opt,
+                isAnswer: index === question.ansIndex,
+              })),
+              createdAt: question.createdAt,
+              description: question.description,
+              image: question.imageUrl,
+              mode: question.mode,
+            }))
           : [],
       },
     }).then((res) => {
@@ -613,7 +619,7 @@ const Quiz: React.FC<{
         saveToLocalStore<Question[]>(questionsKey, []);
         refetch()
           .then(() => {
-            console.log("REFETCHED");
+            // console.log("REFETCHED");
             setQuestions((prev) => {
               return prev.map((q) => ({ ...q, collapsed: true }));
             });
@@ -634,14 +640,14 @@ const Quiz: React.FC<{
     if (!errors) {
       const quizId: string | undefined = await handleQuizUpdation();
       if (quizId) {
-        console.log("Quiz Submitted:", { quizDetails, questions });
-        console.log("success");
+        // console.log("Quiz Submitted:", { quizDetails, questions });
+        // console.log("success");
         toast.success("Questions saved successfully");
       } else {
         toast.error("Error updating quiz");
       }
     } else {
-      console.log(questions, quizDetails);
+      // console.log(questions, quizDetails);
       toast.error(errors);
     }
   };
