@@ -33,7 +33,7 @@ const ProniteRules = ({
             ground
           </li>
           <li>No food or water bottles allowed inside</li>
-          <li>All bags will be inspected at entrance</li>
+          <li>Bags, water bottles, food are not allowed inside the pronite venue</li>
           <li>
             Prohibited items (will be confiscated):
             <ul className="list-disc list-inside ml-6 mt-1 text-gray-400">
