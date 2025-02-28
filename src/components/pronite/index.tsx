@@ -19,7 +19,6 @@ function Pronite({
   clearScanResults: () => void;
 }) {
   const [cameraOn, setCameraOn] = useState(true);
-  const [showPopup,setShowPopup]=useState(false);
   const [registerPronite, { data, loading }] = useMutation(
     RegisterProniteDocument,
     {
@@ -57,37 +56,12 @@ function Pronite({
         <Button
           intent={"success"}
           className="mx-auto rounded bg-blue-500 px-7 py-2.5 font-bold text-white hover:bg-blue-700 mr-2"
-          onClick={() => setShowPopup(true)}
+          onClick={async () => {
+            await registerPronite();
+          }}
         >
           Register
         </Button>
-        {showPopup && (
-            <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-1000 m-0">
-            <div className="bg-primary-900 border border-secondary-500 p-5 rounded shadow-lg m-5 h-fit fixed top-1/4 transform  -translate-y-1/2">
-              <h2 className="text-lg font-bold mb-4">Confirm Registration</h2>
-              <p className="mb-4">Are you sure you want to register for Pronite?</p>
-              <div className="flex justify-end space-x-3">
-            <Button
-            intent={"danger"}
-            className="rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700"
-            onClick={() => setShowPopup(false)}
-            >
-            Cancel
-            </Button>
-            <Button
-            intent={"success"}
-            className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
-            onClick={async () => {
-              await registerPronite();
-              setShowPopup(false);
-            }}
-            >
-            Confirm
-            </Button>
-              </div>
-            </div>
-          </div>
-        )} 
           <Button 
           intent={"info"}
           className="mx-auto rounded bg-blue-500 px-7 py-2.5 font-bold text-white hover:bg-blue-700"
