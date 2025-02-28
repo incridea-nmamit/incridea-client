@@ -104,17 +104,17 @@ export const QRCodeScanner: React.FC<{
                 {userLoading && <Spinner intent={"white"} size={"small"} />}
                   {userData?.userById.__typename === "QueryUserByIdSuccess" && (
                     <div className="rounded-md bg-white/10 p-3">
-                      {/* <div className="mb-1 text-lg leading-snug">
+                      <div className="mb-1 text-lg leading-snug text-center">
                         <span className="font-bold text-green-500">{result}</span>
-                      </div> */}
+                      </div>
                       <div className="text-white">
-                        <div className="text-lg leading-snug">
+                        <div className="text-lg leading-snug text-center">
                           {userData.userById.data.name}
                         </div>
-                        <div className="text-sm leading-snug">
+                        <div className="text-sm leading-snug text-center">
                           {userData.userById.data.college?.name}
                         </div>
-                        <div className="text-sm leading-snug">
+                        <div className="text-sm leading-snug text-center">
                           {userData.userById.data.phoneNumber}
                         </div>
                       </div>
