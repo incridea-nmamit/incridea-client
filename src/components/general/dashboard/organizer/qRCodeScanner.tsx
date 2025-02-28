@@ -7,6 +7,10 @@ import Pronite from "~/components/pronite";
 import AddParticipantToEvent from "./addParticipantToEvent";
 import MarkAttendance from "./scanMarkAttendance";
 import ScanParticipantToTeam from "./scanParticipantToTeam";
+import { useQuery } from "@apollo/client";
+import { UserByIdDocument } from "~/generated/generated";
+import { pidToId } from "~/utils/id";
+import Spinner from "~/components/spinner";
 
 export const QRCodeScanner: React.FC<{
   intent: "attendance" | "addToTeam" | "addToEvent" | "pronite";
@@ -18,9 +22,17 @@ export const QRCodeScanner: React.FC<{
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  const [userId, setUserId] = useState<string | null>(null);
+
+  const { data: userData, loading: userLoading } = useQuery(UserByIdDocument, {
+    variables: userId ? { id: pidToId(userId) } : undefined,
+    skip: !userId,
+  });
+
   const { ref } = useZxing({
     onDecodeResult: (result) => {
       setResult(result.getText());
+      setUserId(result.getText());
     },
     onDecodeError(error) {
       setError(error.message);
@@ -88,12 +100,33 @@ export const QRCodeScanner: React.FC<{
                 <ScanParticipantToTeam teamId={teamId ?? ""} userId={result} />
               )}
               {intent === "pronite" && (
-                <Pronite
-                  pId={result}
-                  stopCamera={stopCamera}
-                  startCamera={startCamera}
-                  clearScanResults={clearScanResults}
-                />
+                <>
+                {userLoading && <Spinner intent={"white"} size={"small"} />}
+                  {userData?.userById.__typename === "QueryUserByIdSuccess" && (
+                    <div className="rounded-md bg-white/10 p-3">
+                      <div className="mb-1 text-lg leading-snug text-center">
+                        <span className="font-bold text-green-500">{result}</span>
+                      </div>
+                      <div className="text-white">
+                        <div className="text-lg leading-snug text-center">
+                          {userData.userById.data.name}
+                        </div>
+                        <div className="text-sm leading-snug text-center">
+                          {userData.userById.data.college?.name}
+                        </div>
+                        <div className="text-sm leading-snug text-center">
+                          {userData.userById.data.phoneNumber}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  <Pronite
+                    pId={result}
+                    stopCamera={stopCamera}
+                    startCamera={startCamera}
+                    clearScanResults={clearScanResults}
+                  />
+                </>
               )}
             </div>
           </div>

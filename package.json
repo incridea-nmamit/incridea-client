@@ -16,17 +16,7 @@
     "typecheck": "tsc --noEmit",
     "codegen": "graphql-codegen",
     "inspect": "graphql-inspector audit 'src/graphql/**/*.graphql' -d",
-    "prepare": "husky",
     "knip": "knip --cache"
-  },
-  "lint-staged": {
-    "**/(*.ts|*.tsx)": [
-      "eslint",
-      "prettier --write --ignore-unknown --cache"
-    ],
-    "**/!(*.ts|*.tsx)": [
-      "prettier --write --ignore-unknown --cache"
-    ]
   },
   "dependencies": {
     "@apollo/client": "^3.13.0",
