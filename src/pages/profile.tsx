@@ -16,7 +16,7 @@ const Page = () => {
   const { error, user: user, loading } = useAuth();
   const containerRef = useRef(null);
   const router = useRouter();
-  const [showQr, setShowQr] = useState<boolean>(false);
+  const [showQr, setShowQr] = useState<boolean>(true);
   const [showAvatarModal, setShowAvatarModal] = useState<boolean>(false);
 
   if (loading) return <Loader />;
