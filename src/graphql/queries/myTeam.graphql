@@ -19,6 +19,16 @@ query MyTeam($eventId: ID!) {
           minTeamSize
           fees
           eventType
+          rounds {
+            completed
+            roundNo
+            quiz {
+              id
+              name
+              completed
+              allowAttempts
+            }
+          }
         }
         members {
           user {
@@ -31,6 +41,7 @@ query MyTeam($eventId: ID!) {
             }
           }
         }
+        roundNo
       }
     }
   }
