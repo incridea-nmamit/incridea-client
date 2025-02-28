@@ -63,7 +63,7 @@ const RegistrationChart = () => {
   const handleDrawerChange = (open: boolean) => {
     setIsOpen(open);
     if (open && !dataFetched) {
-      fetchData({
+      void fetchData({
         variables: selectedDate !== "all" ? { date: new Date(selectedDate).toISOString() } : {}
       });
     }
@@ -71,19 +71,19 @@ const RegistrationChart = () => {
 
   const handleDateChange = (value: string) => {
     setSelectedDate(value);
-    fetchData({
+    void fetchData({
       variables: value !== "all" ? { date: new Date(value).toISOString() } : {}
     });
   };
 
   useEffect(() => {
     if (data?.getRegistrationvsDate?.__typename === "QueryGetRegistrationvsDateSuccess") {
-      const rawData = data.getRegistrationvsDate.data || [];
+      const rawData = data.getRegistrationvsDate.data ?? [];
 
       if (selectedDate === "all") {
         const uniqueDates: string[] = [];
         rawData.forEach(item => {
-          if (item && item.date) {
+          if (item.date) {
             const dateString = item.date.split("T")[0];
             if (dateString && !uniqueDates.includes(dateString)) {
               uniqueDates.push(dateString);
@@ -98,12 +98,12 @@ const RegistrationChart = () => {
   useEffect(() => {
     const newDateOptions: DateOption[] = [
       { value: "all", label: "All Dates" },
-      ...allDates.map((date: string) => ({ 
-        value: date, 
+      ...allDates.map((date: string) => ({
+        value: date,
         label: formatDateShort(date)
       }))
     ];
-    
+
     setDateOptions(newDateOptions);
   }, [allDates]);
 
@@ -113,33 +113,32 @@ const RegistrationChart = () => {
 
   useEffect(() => {
     if (data?.getRegistrationvsDate?.__typename === "QueryGetRegistrationvsDateSuccess") {
-      const rawData = data.getRegistrationvsDate.data || [];
-      
+      const rawData = data.getRegistrationvsDate.data ?? [];
+
       const formattedData: RegistrationData[] = rawData.map(item => {
-        if (!item || !item.date) {
+        if (!item?.date) {
           throw new Error("Invalid data received");
         }
-      
+
         const dateString = item.date;
-      
+
         if (isHourlyView && dateString.includes("T")) {
           const parts = dateString.split("T");
           if (parts.length !== 2) {
             throw new Error(`Invalid time format: ${dateString}`);
           }
-      
-          const datePart = parts[0];
-          let hourPart = parts[1] ?? "";
+
+          const hourPart = parts[1] ?? "";
           const hourNum = parseInt(hourPart, 10);
-      
+
           if (isNaN(hourNum)) {
             throw new Error(`Invalid hour value: ${hourPart}`);
           }
-      
+
           const istHour = (hourNum + 5) % 24;
           const istMinuteText = "30";
           const formattedHour = istHour.toString().padStart(2, '0');
-      
+
           return {
             internalRegistrations: item.internalRegistrations || 0,
             externalRegistrations: item.externalRegistrations || 0,
@@ -152,14 +151,14 @@ const RegistrationChart = () => {
             date: formatDateShort(dateString)
           };
         }
-      });        
-      
+      });
+
       setChartData(formattedData);
     }
   }, [data, isHourlyView]);
 
-  const formattedSelectedDate = selectedDate !== "all" 
-    ? formatDateShort(selectedDate) 
+  const formattedSelectedDate = selectedDate !== "all"
+    ? formatDateShort(selectedDate)
     : "All Dates";
 
   return (
@@ -218,21 +217,21 @@ const RegistrationChart = () => {
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={chartData} margin={{ top: 10, right: 30, left: 0, bottom: 10 }}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />
-                        <XAxis 
-                          dataKey="date" 
-                          tick={{ fill: "#6b7280" }} 
-                          label={{ value: isHourlyView ? "Time" : "Date", position: "insideBottom", offset: -5 }} 
+                        <XAxis
+                          dataKey="date"
+                          tick={{ fill: "#6b7280" }}
+                          label={{ value: isHourlyView ? "Time" : "Date", position: "insideBottom", offset: -5 }}
                         />
-                        <YAxis 
-                          tick={{ fill: "#6b7280" }} 
-                          label={{ value: "Registrations", angle: -90, position: "insideLeft" }} 
+                        <YAxis
+                          tick={{ fill: "#6b7280" }}
+                          label={{ value: "Registrations", angle: -90, position: "insideLeft" }}
                         />
-                        <Tooltip 
-                          labelFormatter={(label: string) => (isHourlyView ? `${label}` : `${label}`)} 
+                        <Tooltip
+                          labelFormatter={(label: string) => (isHourlyView ? `${label}` : `${label}`)}
                         />
                         <Legend wrapperStyle={{ paddingTop: 20 }} iconType="circle" iconSize={8} />
                         <Line type="monotone" dataKey="internalRegistrations" name="Internal" stroke="#2563eb" strokeWidth={2} />
-                        <Line type="monotone" dataKey="externalRegistrations" name= "External" stroke="#4b5563" strokeWidth={2} />
+                        <Line type="monotone" dataKey="externalRegistrations" name="External" stroke="#4b5563" strokeWidth={2} />
                       </LineChart>
                     </ResponsiveContainer>
                   </div>
