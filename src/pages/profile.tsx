@@ -10,6 +10,7 @@ import LeaderBoard from "~/components/profile/LeaderBoard";
 import { Button } from "~/components/button/button";
 import { UserPen } from "lucide-react";
 import AvatarModal from "~/components/profile/avatarModal";
+import { CONSTANT } from "~/constants";
 
 const Page = () => {
   const { error, user: user, loading } = useAuth();
@@ -41,6 +42,11 @@ const Page = () => {
 
   if (user.role === Role.Judge) {
     void router.push("/dashboard");
+    return null;
+  }
+
+  if (user.id === `${CONSTANT.PID.PRONITE_USER}`) {
+    void router.push("/dashboard/pronite");
     return null;
   }
 
