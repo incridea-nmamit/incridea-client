@@ -82,7 +82,7 @@ export const QRCodeScanner: React.FC<{
         {result && (
           <div className="flex flex-col items-center">
             <Badge color={"info"}>Scanned ID: {result}</Badge>
-            <div className="mt-2">
+            <div className="m-2">
               {intent === "attendance" && (
                 <MarkAttendance
                   eventId={eventId}
