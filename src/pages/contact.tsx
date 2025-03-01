@@ -34,13 +34,13 @@ const Contact: NextPage = () => {
           </div>
           <p className="mt-2">
             General Query: +91{" "}
+            <a href="tel:9449530107" className="hover:underline">
+              94495 30107
+            </a>{" "}
+            or +91{" "}
             <a href="tel:9513295282" className="hover:underline">
               95132 95282
-            </a>{" "}
-            {/* or +91{" "}
-            <a href="tel:9686356123" className="hover:underline">
-               96863 56123
-            </a> */}
+            </a>
           </p>
           <p className="mt-2">
             Tecnichal Query: +91{" "}
