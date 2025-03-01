@@ -11,6 +11,8 @@ import { Button } from "~/components/button/button";
 import { UserPen } from "lucide-react";
 import AvatarModal from "~/components/profile/avatarModal";
 import { CONSTANT } from "~/constants";
+import { QRCodeSVG } from "qrcode.react";
+import { idToPid } from "~/utils/id";
 
 const Page = () => {
   const { error, user: user, loading } = useAuth();
@@ -68,7 +70,13 @@ const Page = () => {
             >
               <UserPen className="scale-[200%]" />
             </Button>
-            <ProfileCard user={user} showQR={showQr} />
+            {/* <ProfileCard user={user} showQR={showQr} /> */}
+            <div className="border-1 border-secondary-500/50 bg-gradient-to-br from-primary-900/80 via-primary-700/80 to-primary-900/80 bg-cover bg-top backdrop-blur-sm flex flex-col gap-4 justify-center items-center text-center">
+              <h1 className="text-2xl font-bold">{user.name}</h1>
+              <h2 className="text-xl font-semibold ">{user.college?.name}</h2>
+                <QRCodeSVG value={idToPid(user.id)}/>
+              <h3 className="text-lg">{idToPid(user.id)}</h3>
+            </div>
           </div>
           <LeaderBoard
             isShowQr={showQr}
