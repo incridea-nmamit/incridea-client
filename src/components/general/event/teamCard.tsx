@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { QRCodeSVG } from "qrcode.react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { AiOutlineCopy } from "react-icons/ai";
 import { BiCheckDouble } from "react-icons/bi";
@@ -20,6 +20,7 @@ import { generateEventUrl } from "~/utils/url";
 import CreateTeamModal from "./createTeamModal";
 import EditTeamModal from "./editEvent";
 import JoinTeamModal from "./joinTeamModal";
+import {useRouter} from "next/navigation";
 
 const TeamCard = ({
   team,
@@ -32,6 +33,7 @@ const TeamCard = ({
   name: string;
   email: string;
 }) => {
+  const router = useRouter();
   const [sdkLoading, setSdkLoading] = useState(false);
 
   const url = `Join my team for ${
@@ -48,8 +50,13 @@ const TeamCard = ({
     });
   };
 
+  const handleQuizRedirect = () => {
+      router.push(`${team.event.rounds[team.roundNo - 1]?.quiz?.name}/quiz/${team.event.rounds[team.roundNo - 1]?.quiz?.id}`);
+  }
+  
   return (
     <div className="flex flex-col">
+
       <div className="relative mb-4 mt-5 flex w-full flex-col items-start justify-center rounded-md border border-secondary-400/40 bg-black bg-opacity-15 p-5">
         <div className="w-full text-center">
           {team.confirmed ? (
@@ -98,8 +105,11 @@ const TeamCard = ({
                 </div>
               </div>
             )}
+        
           </div>
+       
           <div>
+       
             <div className="mt-5 flex w-full items-center justify-between">
               {!(
                 team.event.eventType === EventType.Individual ||
@@ -117,6 +127,7 @@ const TeamCard = ({
                   {idToPid(userId)}
                 </div>
               )}
+        
               {Number(userId) === team.leaderId && !team.confirmed ? (
                 !(
                   team.event.eventType === EventType.Individual ||
@@ -130,6 +141,7 @@ const TeamCard = ({
                   <BiCheckDouble /> Registered
                 </Badge>
               )}
+      
             </div>
             {!team.confirmed && (
               <span className="text-xs">
@@ -179,6 +191,14 @@ const TeamCard = ({
                   needMore={team.event.minTeamSize - team.members.length}
                 />
               ))}
+                               {team.confirmed && team.attended && team.leaderId === parseInt(userId) && team.event.rounds[team.roundNo - 1]?.quiz && !team.event.rounds[team.roundNo - 1]?.quiz?.completed && team.event.rounds[team.roundNo - 1]?.quiz?.allowAttempts ? (
+                       <div className="flex justify-center items-center">
+                         <Button intent={"primary"} onClick={handleQuizRedirect}>
+                        Join Quiz
+                      </Button>
+                       </div>
+          ) : (null)
+          }
           </div>
         </div>
 
