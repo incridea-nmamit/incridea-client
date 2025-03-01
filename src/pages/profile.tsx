@@ -71,8 +71,10 @@ const Page = () => {
               <UserPen className="scale-[200%]" />
             </Button> */}
             {/* <ProfileCard user={user} showQR={showQr} /> */}
-            <div className="border-1 text-white h-[70svh] border-secondary-500/50 bg-gradient-to-br from-primary-900/80 via-primary-700/80 to-primary-900/80 bg-cover bg-top backdrop-blur-sm flex flex-col gap-4 justify-center items-center text-center">
+            <div className="border-1 text-white h-[70svh] border-secondary-500/50 bg-gradient-to-br from-primary-900/80 via-primary-700/80 to-primary-900/80 bg-cover bg-top backdrop-blur-sm flex flex-col gap-2 justify-center items-center text-center">
+                <div className="bg-white p-6 rounded-lg border border-black">
                 <QRCodeSVG value={idToPid(user.id)} size={250}/>
+                </div>
               <h3 className="text-xl font-bold">{idToPid(user.id)}</h3>
                 <h1 className="text-2xl font-bold">{user.name}</h1>
               <h2 className="text-xl font-semibold ">{user.college?.name}</h2>
