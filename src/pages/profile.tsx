@@ -60,7 +60,7 @@ const Page = () => {
       <div className="flex md:flex-row flex-col w-full mt-16 p-2 gap-8 h-full pb-8 relative">
         <div className="md:w-[30rem] w-full h-auto md:h-[85vh] rounded-lg overflow-hidden col-span-1 border-secondary-500/50 border-2 flex flex-col gap-0 md:sticky md:top-[10%]">
           <div className="w-full h-full relative">
-            <AvatarModal
+            {/* <AvatarModal
               showModal={showAvatarModal}
               setShowModal={setShowAvatarModal}
             />
@@ -69,13 +69,13 @@ const Page = () => {
               className="border-none size-10 rounded-md border-secondary-500 stroke-secondary-500 absolute top-5 left-5 z-50"
             >
               <UserPen className="scale-[200%]" />
-            </Button>
+            </Button> */}
             {/* <ProfileCard user={user} showQR={showQr} /> */}
-            <div className="border-1 border-secondary-500/50 bg-gradient-to-br from-primary-900/80 via-primary-700/80 to-primary-900/80 bg-cover bg-top backdrop-blur-sm flex flex-col gap-4 justify-center items-center text-center">
-              <h1 className="text-2xl font-bold">{user.name}</h1>
+            <div className="border-1 text-white h-[70svh] border-secondary-500/50 bg-gradient-to-br from-primary-900/80 via-primary-700/80 to-primary-900/80 bg-cover bg-top backdrop-blur-sm flex flex-col gap-4 justify-center items-center text-center">
+                <QRCodeSVG value={idToPid(user.id)} size={250}/>
+              <h3 className="text-xl font-bold">{idToPid(user.id)}</h3>
+                <h1 className="text-2xl font-bold">{user.name}</h1>
               <h2 className="text-xl font-semibold ">{user.college?.name}</h2>
-                <QRCodeSVG value={idToPid(user.id)}/>
-              <h3 className="text-lg">{idToPid(user.id)}</h3>
             </div>
           </div>
           <LeaderBoard
