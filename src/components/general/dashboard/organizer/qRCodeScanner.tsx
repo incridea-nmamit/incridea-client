@@ -69,7 +69,7 @@ export const QRCodeScanner: React.FC<{
     <div className="relative flex flex-col items-center">
       <video
         className="w-full rounded-lg border border-emerald-900"
-        ref={ref}
+        ref={ref as unknown as React.RefObject<HTMLVideoElement>}
       />
       {!result && (
         <div className="mt-2 text-center text-sm text-gray-400">
@@ -101,7 +101,7 @@ export const QRCodeScanner: React.FC<{
               )}
               {intent === "pronite" && (
                 <>
-                {userLoading && <Spinner intent={"white"} size={"small"} />}
+                  {userLoading && <Spinner intent={"white"} size={"small"} />}
                   {userData?.userById.__typename === "QueryUserByIdSuccess" && (
                     <div className="rounded-md bg-white/10 p-3">
                       <div className="mb-1 text-lg leading-snug text-center">
