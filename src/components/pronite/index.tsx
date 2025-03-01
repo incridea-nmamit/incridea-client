@@ -4,6 +4,7 @@ import Button from "~/components/button";
 import Spinner from "~/components/spinner";
 import {
   RegisterProniteDocument,
+  ProniteDay,
 } from "~/generated/generated";
 import { pidToId } from "~/utils/id";
 
@@ -45,13 +46,20 @@ function Pronite({
         </>
       ) : data?.registerPronite.__typename ===
         "MutationRegisterProniteSuccess" ? (
-        <div className="rounded-md bg-white/10 p-3">
-          <div className="mb-2 text-lg leading-snug text-green-500">
-            <span className="font-bold">{pId}</span> registered for Pronite
+        <div className="rounded-md  p-3">
+          <div className="mb-2 text-lg leading-snug text-green-500 text-center">
+          <span className="font-bold">{pId}</span> registered for Pronite
+            <span className="text-secondary-500 font-bold text-xl">
+              {data?.registerPronite.data.proniteDay === ProniteDay.Day1
+                ? " Masala Coffee"
+                : data?.registerPronite.data.proniteDay === ProniteDay.Day2
+                ? " Shaan"
+                : ""}
+            </span>
           </div>
         </div>
       ) : (
-        <div className="rounded-md bg-white/10 font-semibold text-red-500">
+        <div className="rounded-md font-semibold text-red-500 text-center">
           {data?.registerPronite.message && (
             <div>
               <p className="p-3 py-2">{data.registerPronite.message}</p>
