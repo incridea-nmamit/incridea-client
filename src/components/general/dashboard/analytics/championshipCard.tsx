@@ -61,6 +61,8 @@ export default function Leaderboard() {
       techCount: college.techCount,
       nonTechCount: college.nonTechCount,
       coreCount: college.coreCount,
+      techLastRound: college.techLastRound,
+      nonTechLastRound: college.nonTechLastRound,
       totalgoldCount: totalGold,
       totalsilverCount: totalSilver,
       totalbronzeCount: totalBronze,
@@ -103,6 +105,8 @@ export default function Leaderboard() {
       "Tech",
       "Non-Tech",
       "Core",
+      "Tech Last Round",
+      "Non-Tech Last Round",
       "Diamond",
       "Gold",
       "Silver",
@@ -119,6 +123,8 @@ export default function Leaderboard() {
           college.techCount,
           college.nonTechCount,
           college.coreCount,
+          college.techLastRound,
+          college.nonTechLastRound,
           college.totaldiamondCount,
           college.totalgoldCount,
           college.totalsilverCount,
@@ -185,6 +191,12 @@ export default function Leaderboard() {
                 Core
               </th>
               <th className="px-4 py-3 text-center text-sm font-semibold text-gray-300">
+                Tech Last Round
+              </th>
+              <th className="px-4 py-3 text-center text-sm font-semibold text-gray-300">
+                Non-Tech Last Round
+              </th>
+              <th className="px-4 py-3 text-center text-sm font-semibold text-gray-300">
                 Diamond
               </th>
               <th className="px-4 py-3 text-center text-sm font-semibold text-gray-300">
@@ -217,6 +229,12 @@ export default function Leaderboard() {
                 </td>
                 <td className="px-4 py-3 text-center text-white">
                   {college.coreCount}
+                </td>
+                <td className="px-4 py-3 text-center text-white">
+                  {college.techLastRound}
+                </td>
+                <td className="px-4 py-3 text-center text-white">
+                  {college.nonTechLastRound}
                 </td>
                 <td
                   className="px-4 py-3 text-center text-white cursor-pointer hover:bg-white/10"

@@ -10,6 +10,8 @@ query GetChampionshipLeaderboard {
         techCount
         nonTechCount
         coreCount
+        techLastRound
+        nonTechLastRound
         diamondCount {
           winner
           runner_up
