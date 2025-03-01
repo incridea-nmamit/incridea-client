@@ -1,12 +1,12 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
 import Button from "~/components/button";
 import Spinner from "~/components/spinner";
 import {
   RegisterProniteDocument,
-  UserByIdDocument,
 } from "~/generated/generated";
 import { pidToId } from "~/utils/id";
+
 function Pronite({
   pId,
   stopCamera,
@@ -27,11 +27,6 @@ function Pronite({
       },
     },
   );
-  const { data: userData, loading: userLoading } = useQuery(UserByIdDocument, {
-    variables: {
-      id: pidToId(pId),
-    },
-  });
   useEffect(() => {
     if (
       data?.registerPronite.__typename === "MutationRegisterProniteSuccess" ||
@@ -43,7 +38,27 @@ function Pronite({
   }, [data, stopCamera]);
   return (
     <>
-      <div className="mb-3 mt-1 max-w-sm">
+      <div className="mb-20 mt-1 max-w-sm">
+      {loading ? (
+        <>
+          <Spinner className="mt-3" intent={"white"} size={"small"} />
+        </>
+      ) : data?.registerPronite.__typename ===
+        "MutationRegisterProniteSuccess" ? (
+        <div className="rounded-md bg-white/10 p-3">
+          <div className="mb-2 text-lg leading-snug text-green-500">
+            <span className="font-bold">{pId}</span> registered for Pronite
+          </div>
+        </div>
+      ) : (
+        <div className="rounded-md bg-white/10 font-semibold text-red-500">
+          {data?.registerPronite.message && (
+            <div>
+              <p className="p-3 py-2">{data.registerPronite.message}</p>
+            </div>
+          )}
+        </div>
+      )}
         {!cameraOn ? (
           <Button
             onClick={() => {
@@ -52,71 +67,31 @@ function Pronite({
               setCameraOn(true);
             }}
             intent={"success"}
-            className="mx-auto rounded bg-blue-500 px-7 py-2.5 font-bold text-white hover:bg-blue-700"
+            className="mx-auto rounded bg-blue-500 px-7 py-2.5 font-bold text-white hover:bg-blue-700 mt-1"
           >
             Scan Again
           </Button>
         ) : (
-          <Button
-            intent={"success"}
-            className="mx-auto rounded bg-blue-500 px-7 py-2.5 font-bold text-white hover:bg-blue-700"
-            onClick={async () => await registerPronite()}
-          >
-            Register
+          <div className="flex flex-wrap mt-2">
+        <Button
+          intent={"success"}
+          className="mx-auto rounded bg-blue-500 px-7 py-2.5 font-bold text-white hover:bg-blue-700 mr-2"
+          onClick={async () => {
+            await registerPronite();
+          }}
+        >
+          Register
+        </Button>
+          <Button 
+          intent={"info"}
+          className="mx-auto rounded bg-blue-500 px-7 py-2.5 font-bold text-white hover:bg-blue-700"
+          onClick={clearScanResults}>
+          Scan Again
           </Button>
+          </div>
+
         )}
       </div>
-      {loading ? (
-        <>
-          <Spinner className="mt-3" intent={"white"} size={"small"} />
-        </>
-      ) : data?.registerPronite.__typename ===
-        "MutationRegisterProniteSuccess" ? (
-        <div className="rounded-md bg-white/10 p-3">
-          <div className="mb-1 text-lg leading-snug text-green-500">
-            <span className="font-bold">{pId}</span> registered for Pronite
-          </div>
-          <div className="text-white">
-            <div className="text-lg leading-snug">
-              {data.registerPronite.data.user.name}
-            </div>
-            <div className="text-sm leading-snug">
-              {data.registerPronite.data.user.college?.name}
-            </div>
-            <div className="text-sm leading-snug">
-              {data.registerPronite.data.user.phoneNumber}
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div className="rounded-md bg-white/10 font-semibold text-red-500">
-          {userLoading && <Spinner intent={"white"} size={"small"} />}
-          {data?.registerPronite.message && (
-            <div>
-              <p className="p-3 py-2">{data.registerPronite.message}</p>
-              {userData?.userById.__typename === "QueryUserByIdSuccess" &&
-                !data.registerPronite.message.includes("authorized") && (
-                  <div className="rounded-md bg-white/10 p-3">
-                    <div className="mb-1 text-lg leading-snug">
-                      <span className="font-bold text-green-500">{pId}</span>
-                    </div>
-                    <div className="text-white">
-                      <div className="text-lg leading-snug">
-                        {userData.userById.data.name}
-                      </div>
-                      <div className="text-sm leading-snug">
-                        {userData.userById.data.college?.name}
-                      </div>
-                      <div className="text-sm leading-snug">
-                        {userData.userById.data.phoneNumber}
-                      </div>
-                    </div>
-                  </div>
-                )}
-            </div>
-          )}
-        </div>
-      )}
     </>
   );
 }

@@ -11,6 +11,7 @@ import CreateCardModal from "~/components/general/dashboard/easter-egg/createCar
 import Dashboard from "~/components/layout/dashboard";
 import SearchBox from "~/components/searchbox";
 import Spinner from "~/components/spinner";
+import { CONSTANT } from "~/constants";
 import {
   type DayType,
   DeleteCardDocument,
@@ -116,34 +117,21 @@ const EasterEggDashboard = () => {
       </div>
     );
 
-  // 1. Redirect to login if user is not logged in
   if (!user) {
     void router.push("/login");
     return <div>Redirecting...</div>;
   }
 
-  // 2. Redirect to profile if user is not a branch rep
-  if (data?.getAllSubmissions.__typename === "Error")
+  if (data?.getAllSubmissions.__typename === "Error") {
     void router.push("/profile");
+  }
+
+  if (!CONSTANT.PID.EASTER_PID.includes(Number(user.id))) {
+    void router.push("/profile");
+    return null
+  }
 
   return (
-    // <>{highlightedImage && (
-    //   <div className="relative z-[900]">
-    //     <div
-    //       className="fixed min-w-screen min-h-screen inset-0 z-50 bg-black/50 flex items-center justify-center"
-    //       onClick={() => setHighlightedImage(null)}>
-    //       <div className="relative w-[80vw] pt-28 h-[80vh]">
-    //         <Image
-    //           src={highlightedImage}
-    //           layout="fill"
-    //           objectFit="contain"
-    //           className="rounded-md"
-    //           alt="submission"
-    //         />
-    //       </div>
-    //     </div>
-    //   </div>
-    // )}
     <Dashboard>
       <Transition appear show={Boolean(highlightedImage)} as={Fragment}>
         <Dialog
@@ -175,7 +163,7 @@ const EasterEggDashboard = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Image
+                <img
                   src={highlightedImage ?? ""}
                   width={1000}
                   height={1000}

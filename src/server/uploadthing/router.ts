@@ -236,6 +236,38 @@ export const uploadRouter = {
     .onUploadComplete((data) => {
       console.log("Team image: ", data.file.key);
     }),
+
+    easterEgg: f({
+      image: {
+        maxFileCount: 1,
+        maxFileSize: "4MB",
+      },
+    })
+    // .middleware(async ({ req, res, files }) => {
+    //   const user = await authenticateUser(req, res);
+    //   if (!user)
+    //     throw new UploadThingError({
+    //       message: "Unauthorized",
+    //       code: "FORBIDDEN",
+    //     });
+    //   const customId = req.headers.custom_id as string | undefined;
+    //   return {
+    //     [UTFiles]: files.map((file) => ({
+    //       ...file,
+    //       ...(customId ? {
+    //         customId: customId.replace(/[\s\\/]/g, "_"),
+    //       } : {
+    //         customId: file.name + "_" + file.lastModified
+    //       })
+    //     })),
+    //   };
+    // })
+      .onUploadError((error) => {
+        console.error("Error uploading team image: ", error);
+      })
+      .onUploadComplete((data) => {
+        console.log("Team image: ", data.file.key);
+      }), 
 } satisfies FileRouter;
 
 
