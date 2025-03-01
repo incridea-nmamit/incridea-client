@@ -60,7 +60,10 @@ const QuizPage = () => {
 
   const { data } = useQuery(EventByOrganizerDocument);
 
-  const event = data?.eventByOrganizer.__typename === "QueryEventByOrganizerSuccess" ? data.eventByOrganizer.data.find((event) => event.id === eventId) : undefined;
+  const event =
+    data?.eventByOrganizer.__typename === "QueryEventByOrganizerSuccess"
+      ? data.eventByOrganizer.data.find((event) => event.id === eventId)
+      : undefined;
   const round = event?.rounds.find((round) => round.roundNo === roundInt);
   const quizId = round?.quiz?.id;
 
@@ -182,14 +185,11 @@ const QuizPage = () => {
         `selectionOptions-${user?.id}-${quizId}`,
         JSON.stringify(updatedAnswers),
       );
-      console.log(updatedAnswers);
+      // console.log(updatedAnswers);
       return updatedAnswers;
     });
   };
 
-  useEffect(() => {
-    console.log("Selected Answers", selectedAnswers);
-  }, [selectedAnswers]);
   const progressPercentage = ((currentSlide + 1) / questions.length) * 100;
 
   const handlePrevSlide = () => {
@@ -340,10 +340,11 @@ const QuizPage = () => {
                       <button
                         key={option.id}
                         onClick={() => handleOptionSelect(option)}
-                        className={`my-4 flex min-h-24 w-full gap-2 text-pretty rounded-xl border p-3 text-left transition-all sm:m-0 ${selectedAnswers.find((a) => a.id === option.id)
-                          ? "border-transparent bg-gradient-to-r from-amber-300 to-yellow-400"
-                          : "border-cyan-500/20 bg-green-900/40 hover:bg-emerald-900/40"
-                          }`}
+                        className={`my-4 flex min-h-24 w-full gap-2 text-pretty rounded-xl border p-3 text-left transition-all sm:m-0 ${
+                          selectedAnswers.find((a) => a.id === option.id)
+                            ? "border-transparent bg-gradient-to-r from-amber-300 to-yellow-400"
+                            : "border-cyan-500/20 bg-green-900/40 hover:bg-emerald-900/40"
+                        }`}
                       >
                         <span
                           className={`font-bold ${selectedAnswers.find((a) => a.id === option.id) ? "text-lime-300" : "text-amber-400"}`}
@@ -358,10 +359,11 @@ const QuizPage = () => {
                     <button
                       onClick={handlePrevTrackerPage}
                       disabled={trackerPage === 0}
-                      className={`rounded-full p-1 transition-all ${trackerPage === 0
-                        ? "cursor-not-allowed text-gray-500"
-                        : "text-lime-200 hover:bg-white/10"
-                        }`}
+                      className={`rounded-full p-1 transition-all ${
+                        trackerPage === 0
+                          ? "cursor-not-allowed text-gray-500"
+                          : "text-lime-200 hover:bg-white/10"
+                      }`}
                     >
                       <ChevronLeft className="h-5 w-5 lg:rotate-90" />
                     </button>
@@ -373,16 +375,17 @@ const QuizPage = () => {
                           <button
                             key={questionNumber}
                             onClick={() => swiper?.slideTo(questionNumber)}
-                            className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full font-medium transition-all ${currentSlide === questionNumber
-                              ? "bg-gradient-to-r from-green-800 via-emerald-700 to-lime-800"
-                              : selectedAnswers.find(
-                                (a) =>
-                                  a.questionId ===
-                                  questions[questionNumber]?.id,
-                              )
-                                ? "bg-amber-600"
-                                : "bg-emerald-950/50"
-                              }`}
+                            className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full font-medium transition-all ${
+                              currentSlide === questionNumber
+                                ? "bg-gradient-to-r from-green-800 via-emerald-700 to-lime-800"
+                                : selectedAnswers.find(
+                                      (a) =>
+                                        a.questionId ===
+                                        questions[questionNumber]?.id,
+                                    )
+                                  ? "bg-amber-600"
+                                  : "bg-emerald-950/50"
+                            }`}
                           >
                             {questionNumber + 1}
                           </button>
@@ -393,10 +396,11 @@ const QuizPage = () => {
                     <button
                       onClick={handleNextTrackerPage}
                       disabled={trackerPage >= totalPages - 1}
-                      className={`rounded-full p-1 transition-all ${trackerPage >= totalPages - 1
-                        ? "cursor-not-allowed text-gray-500"
-                        : "text-lime-200 hover:bg-white/10"
-                        }`}
+                      className={`rounded-full p-1 transition-all ${
+                        trackerPage >= totalPages - 1
+                          ? "cursor-not-allowed text-gray-500"
+                          : "text-lime-200 hover:bg-white/10"
+                      }`}
                     >
                       <ChevronRight className="h-5 w-5 lg:rotate-90" />
                     </button>
@@ -411,10 +415,11 @@ const QuizPage = () => {
         <div className="m-4 flex justify-between">
           <button
             onClick={handlePrevSlide}
-            className={`w-26 rounded-md px-4 py-2 shadow-md transition-all md:w-32 ${styles.glassButton} ${currentSlide > 0
-              ? "border border-amber-100 bg-transparent text-white"
-              : "cursor-auto opacity-0"
-              }`}
+            className={`w-26 rounded-md px-4 py-2 shadow-md transition-all md:w-32 ${styles.glassButton} ${
+              currentSlide > 0
+                ? "border border-amber-100 bg-transparent text-white"
+                : "cursor-auto opacity-0"
+            }`}
             disabled={currentSlide === 0}
           >
             Previous
@@ -422,10 +427,11 @@ const QuizPage = () => {
 
           <button
             onClick={handleNextSlide}
-            className={`w-20 rounded-md px-4 py-2 shadow-md transition-all md:w-32 ${styles.glassButton} ${currentSlide < questions.length - 1
-              ? "border border-amber-100 bg-transparent text-white"
-              : "cursor-auto opacity-0"
-              }`}
+            className={`w-20 rounded-md px-4 py-2 shadow-md transition-all md:w-32 ${styles.glassButton} ${
+              currentSlide < questions.length - 1
+                ? "border border-amber-100 bg-transparent text-white"
+                : "cursor-auto opacity-0"
+            }`}
             disabled={currentSlide === questions.length - 1}
           >
             Next
@@ -453,8 +459,9 @@ const QuizPage = () => {
         {!quizTrackerVisible && <HelperTooltip />}
         <span onClick={() => setQuizTrackerVisible(!quizTrackerVisible)}>
           <Sliders
-            className={`h-8 w-8 rounded-3xl border-2 border-secondary-50 p-1 text-slate-50 ${quizTrackerVisible ? "rotate-90" : "-rotate-90"
-              }`}
+            className={`h-8 w-8 rounded-3xl border-2 border-secondary-50 p-1 text-slate-50 ${
+              quizTrackerVisible ? "rotate-90" : "-rotate-90"
+            }`}
           />
         </span>
       </div>
@@ -465,10 +472,11 @@ const QuizPage = () => {
           <button
             onClick={handlePrevTrackerPage}
             disabled={trackerPage === 0}
-            className={`rounded-full p-1 transition-all ${trackerPage === 0
-              ? "cursor-not-allowed text-gray-500"
-              : "text-cyan-400 hover:bg-white/10"
-              }`}
+            className={`rounded-full p-1 transition-all ${
+              trackerPage === 0
+                ? "cursor-not-allowed text-gray-500"
+                : "text-cyan-400 hover:bg-white/10"
+            }`}
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
@@ -480,15 +488,16 @@ const QuizPage = () => {
                 <button
                   key={questionNumber}
                   onClick={() => swiper?.slideTo(questionNumber)}
-                  className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full font-medium transition-all ${currentSlide === questionNumber
-                    ? "bg-gradient-to-r from-green-800 via-emerald-700 to-lime-800"
-                    : selectedAnswers.find(
-                      (a) =>
-                        a.questionId === questions[questionNumber]?.id,
-                    )
-                      ? "bg-amber-600"
-                      : "bg-emerald-950/50"
-                    }`}
+                  className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full font-medium transition-all ${
+                    currentSlide === questionNumber
+                      ? "bg-gradient-to-r from-green-800 via-emerald-700 to-lime-800"
+                      : selectedAnswers.find(
+                            (a) =>
+                              a.questionId === questions[questionNumber]?.id,
+                          )
+                        ? "bg-amber-600"
+                        : "bg-emerald-950/50"
+                  }`}
                 >
                   {questionNumber + 1}
                 </button>
@@ -499,10 +508,11 @@ const QuizPage = () => {
           <button
             onClick={handleNextTrackerPage}
             disabled={trackerPage >= totalPages - 1}
-            className={`rounded-full p-1 transition-all ${trackerPage >= totalPages - 1
-              ? "cursor-not-allowed text-gray-500"
-              : "text-cyan-400 hover:bg-white/10"
-              }`}
+            className={`rounded-full p-1 transition-all ${
+              trackerPage >= totalPages - 1
+                ? "cursor-not-allowed text-gray-500"
+                : "text-cyan-400 hover:bg-white/10"
+            }`}
           >
             <ChevronRight className="h-5 w-5" />
           </button>
@@ -580,10 +590,11 @@ const QuizPage = () => {
                     {question.options.map((option, optionIndex) => (
                       <div
                         key={option.id}
-                        className={`rounded-lg p-3 ${selectedAnswers.find((a) => a.id === option.id)
-                          ? "border-transparent bg-gradient-to-r from-amber-500 to-orange-400"
-                          : "border border-amber-500/20 bg-emerald-900"
-                          }`}
+                        className={`rounded-lg p-3 ${
+                          selectedAnswers.find((a) => a.id === option.id)
+                            ? "border-transparent bg-gradient-to-r from-amber-500 to-orange-400"
+                            : "border border-amber-500/20 bg-emerald-900"
+                        }`}
                       >
                         <span className="font-bold text-emerald-400">
                           {String.fromCharCode(65 + optionIndex)}.{" "}
