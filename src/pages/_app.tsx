@@ -17,6 +17,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import BaseSEO from "~/components/SEO/BaseSEO";
 import { scan } from "react-scan";
 import { env } from "~/env";
+import Notice from "~/components/notice";
 
 const Navbar = dynamic(() => import("~/components/navbar"), { ssr: false });
 
@@ -154,6 +155,7 @@ export default function App({
         />
 
         <LoaderProvider>
+        <Notice />
           <BackGroundGradient>
             <div
               className={cn(
@@ -163,6 +165,7 @@ export default function App({
               )}
             >
               {shouldRenderNavbar && <Navbar />}
+
               <AnimatePresence mode="wait">
                 <Component
                   key={router.pathname}
