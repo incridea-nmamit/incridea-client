@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "graphql-codegen && rm -rf build && BUILD_DIR=\"build\" next build",
+    "build": "graphql-codegen && next build",
     "check": "next lint && tsc --noEmit",
     "dev": "next dev",
     "format:check": "prettier --check --cache .",
