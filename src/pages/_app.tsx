@@ -155,7 +155,7 @@ export default function App({
         />
 
         <LoaderProvider>
-        <Notice />
+          {/* <Notice /> */}
           <BackGroundGradient>
             <div
               className={cn(
